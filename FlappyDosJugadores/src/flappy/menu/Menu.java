@@ -72,7 +72,16 @@ public class Menu implements Initializable {
     
     @FXML
     void highScoreButtonAction(ActionEvent event) {
-    	
+    	try {
+    		
+			Puntuacion punt = new Puntuacion();
+			GameApp.scene.setRoot(punt.getView());
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
     }
 
     @FXML
