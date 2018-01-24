@@ -22,3 +22,18 @@
 	-fx-text-fill: khaki;
 	-fx-background-color: forestgreen;
 }
+
+#scoreTitle{
+	-fx-font-family: 'FlappyBirdy';
+	-fx-font-size: 55pt;
+}
+
+#listScore{
+	-fx-background-color: deepskyblue;
+	-fx-font-family: 'consolas';
+}
+
+.list-cell { -fx-text-fill: black; -fx-alignment: center;}
+.list-cell:odd { -fx-background-color: deepskyblue}
+.list-cell:even { -fx-background-color: deepskyblue}
+.list-cell:filled:hover { -fx-background-color: deepskyblue}
