@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="339.0">
+               <image>
+                  <Image url="@../recurso/flappyLog.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="30.0" top="60.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="onePlayerButton" mnemonicParsing="false" onAction="#onePlayerButtonAction" text="1 - Player">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="twoPlayerButton" mnemonicParsing="false" onAction="#twoPlayerButtonAction" text="2 - Player">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="highScoreButton" mnemonicParsing="false" onAction="#highScoreButtonAction" text="HighScores">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#aboutButtonAction" text="About">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </top>
+</BorderPane>
