@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import flappy.app.FlappyApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,7 @@ public class Menu extends Screen implements Initializable {
 
     public Menu() throws IOException {
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/vista/MenuView.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/MenuView.fxml"));
 		loader.setController(this);
 		loader.load();
 		
@@ -38,7 +39,10 @@ public class Menu extends Screen implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		onePlayerButton.setOnAction(e -> onePlayerButtonAction(e));
+		twoPlayerButton.setOnAction(e -> twoPlayerButtonAction(e));
+		highScoreButton.setOnAction(e -> highScoreButtonAction(e));
+		aboutButton.setOnAction(e -> aboutButtonAction(e));
 		
 	}
 	
@@ -55,11 +59,42 @@ public class Menu extends Screen implements Initializable {
     @FXML
     void highScoreButtonAction(ActionEvent event) {
     	
+    	try {
+    		
+			MejoresPuntuaciones nuevoPuntuacion = new MejoresPuntuaciones();
+			FlappyApp.scene.setRoot(nuevoPuntuacion.getPuntuacionView());
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
+    	
     }
 
     @FXML
     void aboutButtonAction(ActionEvent event) {
     	
+    	try {
+    		
+			AcercaDe nuevoAcerca = new AcercaDe();
+			FlappyApp.scene.setRoot(nuevoAcerca.getAcercaView());
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
+    	
     }
+    
+    @FXML
+    void exitButtonAction(ActionEvent event) {
+    	FlappyApp.getPrimaryStage().close();
+    }
+    
+    public StackPane getMenuView() {
+		return vistaMenu;
+	}
 	
 }
