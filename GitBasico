@@ -1,0 +1,21 @@
+cd rutaEnLaQueQuieresGuardarElRepositorioEnLocal
+
+git init
+
+git config user.name añadeTuNombreDeGitHub
+
+git config user.email añadeTuEmailDeGit
+
+git pull 
+
+git checkout Dani o Jorge respectivamente para entrar en la rama
+
+git checkout master para volver a la rama principal 
+
+git pull // git pull origin Jorge/Dani/Mariela/master                       /*PRIMERO SIEMPRE HACER PULL ANTES DE PUSH*/
+
+git status -> para ver los cambios
+
+git push // git push origin Jorge/Dani/Mariela/master
+
+git commit -m "comentario"
