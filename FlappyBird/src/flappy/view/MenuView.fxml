@@ -20,12 +20,12 @@
                         <Image url="@../resources/flappyLog.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="onePlayerButton" mnemonicParsing="false" onAction="#onePlayerButtonAction" text="1 - Player">
+                  <Button fx:id="onePlayerButton" mnemonicParsing="false" onAction="#onePlayerButtonAction" text="One Player">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="twoPlayerButton" mnemonicParsing="false" onAction="#twoPlayerButtonAction" text="2 - Player">
+                  <Button fx:id="twoPlayerButton" mnemonicParsing="false" onAction="#twoPlayerButtonAction" text="Two Player">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

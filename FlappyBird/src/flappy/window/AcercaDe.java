@@ -5,18 +5,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
+import flappy.components.Sprite;
+import flappy.components.SpritePane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class AcercaDe implements Initializable {
 	
     @FXML
-    private BorderPane paneNubes;
+    private SpritePane paneNubes;
 
     @FXML
     private BorderPane paneButtons;
@@ -40,6 +43,18 @@ public class AcercaDe implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		volverButton.setOnAction(e -> volverButtonAction(e));
+		
+		
+		
+		Sprite nube = new Sprite();
+		nube.setImage(new Image("/flappy/resources/flappyCloud.png"));
+		
+		
+		Sprite nube2 = new Sprite();
+		nube2.setImage(new Image("/flappy/resources/flappyCloud.png"));
+		
+		
+		paneNubes.getSpriteList().addAll(nube,nube2);
 		
 	}
 	
