@@ -1,5 +1,7 @@
 cd rutaEnLaQueQuieresGuardarElRepositorioEnLocal
 
+git clone url
+
 git init
 
 git config user.name añadeTuNombreDeGitHub
