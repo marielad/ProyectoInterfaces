@@ -18,6 +18,9 @@ git pull // git pull origin Jorge/Dani/Mariela/master                       /*PR
 
 git status -> para ver los cambios
 
-git push // git push origin Jorge/Dani/Mariela/master
+git add nombreCarpetaProyecto/
 
 git commit -m "comentario"
+
+git push // git push origin Jorge/Dani/Mariela/master
+
