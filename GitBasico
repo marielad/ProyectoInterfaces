@@ -1,6 +1,6 @@
 cd rutaEnLaQueQuieresGuardarElRepositorioEnLocal
 
-git clone url
+git clone url //la primera vez
 
 git init
 
