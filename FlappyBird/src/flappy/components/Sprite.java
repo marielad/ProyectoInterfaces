@@ -1,82 +1,104 @@
 package flappy.components;
 
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 public class Sprite{
+	private ObjectProperty<Image> sprite = new SimpleObjectProperty<>(this, "sprite");
+    private DoubleProperty setScaleX = new SimpleDoubleProperty(this, "x");
+    private DoubleProperty setScaleY = new SimpleDoubleProperty(this, "y");
+    private DoubleProperty velocityX = new SimpleDoubleProperty(this, "x");
+    private DoubleProperty velocityY = new SimpleDoubleProperty(this, "x");
+    private DoubleProperty width = new SimpleDoubleProperty(this, "width");
+    private DoubleProperty height = new SimpleDoubleProperty(this, "x");
 
-	  private Image image;
-	    private double positionX;
-	    private double positionY;    
-	    private double velocityX;
-	    private double velocityY;
-	    private double width;
-	    private double height;
+	public final ObjectProperty<Image> spriteProperty() {
+		return this.sprite;
+	}
+	
+	public final Image getImage() {
+		return this.spriteProperty().get();
+	}
+	
+	public final void setImage(final Image image) {
+		this.spriteProperty().set(image);
+		width.set(image.getWidth());
+		height.set(image.getHeight());
+	}
 
-	    public Sprite()
-	    {
-	        positionX = 0;
-	        positionY = 0;    
-	        velocityX = 0;
-	        velocityY = 0;
-	    }
+	public final DoubleProperty setScaleXProperty() {
+		return this.setScaleX;
+	}
 
-	    public void setImage(Image i)
-	    {
-	        image = i;
-	        width = i.getWidth();
-	        height = i.getHeight();
-	    }
+	public final double getSetScaleX() {
+		return this.setScaleXProperty().get();
+	}
 
-	    public void setImage(String filename)
-	    {
-	        Image i = new Image(filename);
-	        setImage(i);
-	    }
+	public final void setSetScaleX(final double setScaleX) {
+		this.setScaleXProperty().set(setScaleX);
+	}
 
-	    public void setPosition(double x, double y)
-	    {
-	        positionX = x;
-	        positionY = y;
-	    }
+	public final DoubleProperty setScaleYProperty() {
+		return this.setScaleY;
+	}
 
-	    public void setVelocity(double x, double y)
-	    {
-	        velocityX = x;
-	        velocityY = y;
-	    }
+	public final double getSetScaleY() {
+		return this.setScaleYProperty().get();
+	}
 
-	    public void addVelocity(double x, double y)
-	    {
-	        velocityX += x;
-	        velocityY += y;
-	    }
+	public final void setSetScaleY(final double setScaleY) {
+		this.setScaleYProperty().set(setScaleY);
+	}
 
-	    public void update(double time)
-	    {
-	        positionX += velocityX * time;
-	        positionY += velocityY * time;
-	    }
+	public final DoubleProperty velocityXProperty() {
+		return this.velocityX;
+	}
 
-	    public void render(GraphicsContext gc)
-	    {
-	        gc.drawImage( image, positionX, positionY );
-	    }
+	public final double getVelocityX() {
+		return this.velocityXProperty().get();
+	}
 
-	    public Rectangle2D getBoundary()
-	    {
-	        return new Rectangle2D(positionX,positionY,width,height);
-	    }
+	public final void setVelocityX(final double velocityX) {
+		this.velocityXProperty().set(velocityX);
+	}
 
-	    public boolean intersects(Sprite s)
-	    {
-	        return s.getBoundary().intersects( this.getBoundary() );
-	    }
-	    
-	    public String toString()
-	    {
-	        return " Position: [" + positionX + "," + positionY + "]" 
-	        + " Velocity: [" + velocityX + "," + velocityY + "]";
-	    }
+	public final DoubleProperty velocityYProperty() {
+		return this.velocityY;
+	}
+
+	public final double getVelocityY() {
+		return this.velocityYProperty().get();
+	}
+
+	public final void setVelocityY(final double velocityY) {
+		this.velocityYProperty().set(velocityY);
+	}
+
+	public final DoubleProperty widthProperty() {
+		return this.width;
+	}
+	
+	public final double getWidth() {
+		return this.widthProperty().get();
+	}
+
+	public final void setWidth(final double width) {
+		this.widthProperty().set(width);
+	}
+
+	public final DoubleProperty heightProperty() {
+		return this.height;
+	}
+
+	public final double getHeight() {
+		return this.heightProperty().get();
+	}
+
+	public final void setHeight(final double height) {
+		this.heightProperty().set(height);
+	}
+	
 }

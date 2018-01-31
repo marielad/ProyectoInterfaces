@@ -22,7 +22,7 @@ public class FlappyApp extends Application {
 		menuControl = new Menu();
 		
 		scene = new Scene(menuControl.getMenuView(), 1000, 400);
-		Font.loadFont(getClass().getResourceAsStream("/flappy/font/Flappy-Bird.ttf"), 12);
+		Font.loadFont(FlappyApp.class.getResource("/flappy/resources/Flappy-Bird.ttf").toExternalForm(), 0);
 		scene.getStylesheets().add(getClass().getResource("/flappy/style/estilo.css").toExternalForm());
 		
 		primaryStage.getIcons().add(new Image("/flappy/resources/flappyIcon.png"));
