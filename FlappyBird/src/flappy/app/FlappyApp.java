@@ -13,7 +13,7 @@ public class FlappyApp extends Application {
 	
 	public static Stage primaryStage;
 	public static Scene scene;
-	private Menu menuControl;
+	public static Menu menuControl;
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -23,7 +23,7 @@ public class FlappyApp extends Application {
 		
 		scene = new Scene(menuControl.getMenuView(), 1000, 400);
 		Font.loadFont(FlappyApp.class.getResource("/flappy/resources/Flappy-Bird.ttf").toExternalForm(), 0);
-		scene.getStylesheets().add(getClass().getResource("/flappy/style/estilo.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/flappy/resources/estilo.css").toExternalForm());
 		
 		primaryStage.getIcons().add(new Image("/flappy/resources/flappyIcon.png"));
 		primaryStage.setTitle("Flappy Bird");
@@ -35,10 +35,6 @@ public class FlappyApp extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-	}
-	
-	public Scene getScene() {
-		return scene;
 	}
 
 	public static Stage getPrimaryStage() {

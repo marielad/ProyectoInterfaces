@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 public class Menu extends Screen implements Initializable {
 	
     @FXML
-    private BorderPane paneNubes;
+    private BorderPane paneAnimation;
 
     @FXML
     private BorderPane paneButtons;
@@ -33,7 +33,7 @@ public class Menu extends Screen implements Initializable {
 		loader.load();
 		
 		vistaMenu = loader.getRoot();
-    	
+
     }
     
 	@Override
@@ -43,6 +43,14 @@ public class Menu extends Screen implements Initializable {
 		twoPlayerButton.setOnAction(e -> twoPlayerButtonAction(e));
 		highScoreButton.setOnAction(e -> highScoreButtonAction(e));
 		aboutButton.setOnAction(e -> aboutButtonAction(e));
+		
+    	paneAnimation.getChildren().clear();
+		
+		for (int i = 0; i < Screen.listaNubes.size(); i++) {
+			
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
+		
+		}
 		
 	}
 	
@@ -94,6 +102,7 @@ public class Menu extends Screen implements Initializable {
     }
     
     public StackPane getMenuView() {
+		initialize(null, null);
 		return vistaMenu;
 	}
 	

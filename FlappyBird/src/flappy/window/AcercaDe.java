@@ -5,21 +5,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.components.Sprite;
-import flappy.components.SpritePane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class AcercaDe implements Initializable {
 	
     @FXML
-    private SpritePane paneNubes;
+    private BorderPane paneAnimation;
 
     @FXML
     private BorderPane paneButtons;
@@ -44,33 +41,18 @@ public class AcercaDe implements Initializable {
 		
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		
+		for (int i = 0; i < Screen.listaNubes.size(); i++) {
+			
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
 		
-		
-		Sprite nube = new Sprite();
-		nube.setImage(new Image("/flappy/resources/flappyCloud.png"));
-		
-		
-		Sprite nube2 = new Sprite();
-		nube2.setImage(new Image("/flappy/resources/flappyCloud.png"));
-		
-		
-		paneNubes.getSpriteList().addAll(nube,nube2);
+		}
 		
 	}
 	
 	@FXML
     void volverButtonAction(ActionEvent event) {
 		
-    	try {
-    		
-			Menu nuevoMenu = new Menu();
-			FlappyApp.scene.setRoot(nuevoMenu.getMenuView());
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
-		}
+		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
 		
 	}
 	

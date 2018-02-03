@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 public class MejoresPuntuaciones implements Initializable {
 	
     @FXML
-    private BorderPane paneNubes;
+    private BorderPane paneAnimation;
 
     @FXML
     private BorderPane paneButtons;
@@ -41,21 +41,18 @@ public class MejoresPuntuaciones implements Initializable {
 		
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		
+		for (int i = 0; i < Screen.listaNubes.size(); i++) {
+			
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
+		
+		}
+		
 	}
 	
 	@FXML
     void volverButtonAction(ActionEvent event) {
-		
-    	try {
-    		
-			Menu nuevoMenu = new Menu();
-			FlappyApp.scene.setRoot(nuevoMenu.getMenuView());
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
-		}
+    	
+		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
 		
 	}
 	
