@@ -3,6 +3,7 @@ package flappy.app;
 import java.io.IOException;
 
 import flappy.window.Menu;
+import flappy.window.Screen;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,7 +22,7 @@ public class FlappyApp extends Application {
 		FlappyApp.primaryStage = primaryStage;
 		menuControl = new Menu();
 		
-		scene = new Scene(menuControl.getMenuView(), 1000, 400);
+		scene = new Scene(menuControl.getMenuView(), Screen.ancho, Screen.alto);
 		Font.loadFont(FlappyApp.class.getResource("/flappy/resources/Flappy-Bird.ttf").toExternalForm(), 0);
 		scene.getStylesheets().add(getClass().getResource("/flappy/resources/estilo.css").toExternalForm());
 		

@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-public class MejoresPuntuaciones implements Initializable {
+public class MejoresPuntuaciones extends Screen implements Initializable {
 	
     @FXML
     private BorderPane paneAnimation;
@@ -41,9 +41,11 @@ public class MejoresPuntuaciones implements Initializable {
 		
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		
+		paneAnimation.getChildren().clear();
+		
 		for (int i = 0; i < Screen.listaNubes.size(); i++) {
 			
-			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSprite());
 		
 		}
 		

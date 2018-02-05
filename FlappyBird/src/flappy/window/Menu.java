@@ -44,13 +44,7 @@ public class Menu extends Screen implements Initializable {
 		highScoreButton.setOnAction(e -> highScoreButtonAction(e));
 		aboutButton.setOnAction(e -> aboutButtonAction(e));
 		
-    	paneAnimation.getChildren().clear();
-		
-		for (int i = 0; i < Screen.listaNubes.size(); i++) {
-			
-			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
-		
-		}
+    	creacionNubes();
 		
 	}
 	
@@ -102,7 +96,13 @@ public class Menu extends Screen implements Initializable {
     }
     
     public StackPane getMenuView() {
-		initialize(null, null);
+    	
+		for (int i = 0; i < Screen.listaNubes.size(); i++) {
+			
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSprite());
+		
+		}
+		
 		return vistaMenu;
 	}
 	

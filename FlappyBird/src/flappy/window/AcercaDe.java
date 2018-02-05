@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
+import flappy.sprites.Tuberia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-public class AcercaDe implements Initializable {
+public class AcercaDe extends Screen implements Initializable {
 	
     @FXML
     private BorderPane paneAnimation;
@@ -41,9 +42,11 @@ public class AcercaDe implements Initializable {
 		
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		
+		paneAnimation.getChildren().clear();
+		
 		for (int i = 0; i < Screen.listaNubes.size(); i++) {
 			
-			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSpriteImage());
+			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSprite());
 		
 		}
 		
