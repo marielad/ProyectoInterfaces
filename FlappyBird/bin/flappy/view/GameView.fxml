@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="paneJuego" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="panePuntuacion" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</StackPane>

@@ -11,12 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class Menu extends Screen implements Initializable {
 	
     @FXML
-    private BorderPane paneAnimation;
+    private Pane paneAnimation;
 
     @FXML
     private BorderPane paneButtons;
@@ -45,11 +46,22 @@ public class Menu extends Screen implements Initializable {
 		aboutButton.setOnAction(e -> aboutButtonAction(e));
 		
     	creacionNubes();
-		
+    	
 	}
 	
 	@FXML
     void onePlayerButtonAction(ActionEvent event) {
+		
+    	try {
+    		
+			Juego nuevoJuego = new Juego();
+			FlappyApp.scene.setRoot(nuevoJuego.getJuegoView());
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
 		
 	}
 	
@@ -97,9 +109,9 @@ public class Menu extends Screen implements Initializable {
     
     public StackPane getMenuView() {
     	
-		for (int i = 0; i < Screen.listaNubes.size(); i++) {
+		for (int i = 0; i < listaNubes.size(); i++) {
 			
-			paneAnimation.getChildren().add(Screen.listaNubes.get(i).getSprite());
+			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());
 		
 		}
 		

@@ -3,7 +3,6 @@ package flappy.window;
 import java.util.ArrayList;
 
 import flappy.sprites.Nube;
-import flappy.sprites.Tuberia;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -17,10 +16,9 @@ public class Screen {
 	public static final int ancho = 1000;
 	public static final int alto = 400;
 	public static Group surfaceGroup;
-	public static Timeline nubesLoop, gameLoop;
+	public static Timeline nubesLoop;
 
 	public static ArrayList<Nube> listaNubes;
-	public static ArrayList<Tuberia> listaTubos;
 
 	public Screen() {
 		
@@ -60,19 +58,6 @@ public class Screen {
 
 		nubesLoop.setCycleCount(-1);
 		nubesLoop.play();
-		
-	}
-	
-	public void creacionTubos() {
-		
-		listaTubos = new ArrayList<>();
-		
-		for (int i = 0; i < 5; i++) {
-			
-			Tuberia tubo = new Tuberia();
-			listaTubos.add(tubo);
-			
-		}
 		
 	}
 
