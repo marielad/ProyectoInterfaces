@@ -1,34 +1,33 @@
 package flappy.window;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import flappy.sprites.Tuberia;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
+import flappy.app.FlappyApp;
+import flappy.sound.Sound;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
+import javazoom.jl.decoder.JavaLayerException;
 
 public class Juego extends Screen implements Initializable {
+
+	@FXML
+	private Pane paneNubes, paneJuego, panePuntuacion;
+
+	StackPane vistaJuego = new StackPane();
 	
-    @FXML
-    private Pane paneNubes, paneJuego, panePuntuacion;
-    
-    StackPane vistaJuego;
-    
-    public static Timeline tubosLoop;
-    
-	public static ArrayList<Tuberia> listaTubos;
-   
-    
+	InputStream juegoMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/wily12.mp3");
+	
+	Sound musicaJuego;
+
 	public Juego() throws IOException {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/GameView.fxml"));
@@ -38,63 +37,52 @@ public class Juego extends Screen implements Initializable {
 		vistaJuego = loader.getRoot();
 
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		loopTubos();
-		
-		for (int i = 0; i < listaNubes.size(); i++) {
+		try {
 			
-			paneNubes.getChildren().add(listaNubes.get(i).getSprite());
-		
-		}
-		
-	}
-	
-	public void loopTubos() {
-		
-		listaTubos = new ArrayList<>();
-		
-		for (int i = 0; i < 5; i++) {
+			musicaJuego = new Sound(juegoMP3);
+			musicaJuego.play();
 			
-			Tuberia tubo = new Tuberia();
-			tubo.setTranslateX(i * (ancho / 4));
-			listaTubos.add(tubo);
+		} catch (JavaLayerException e1) {
+			
+			e1.printStackTrace();
 			
 		}
 		
-		tubosLoop = new Timeline(new KeyFrame(Duration.millis(1000 / FPS_60), new EventHandler<ActionEvent>() {
+		creacionTubos(paneJuego);
 
-			public void handle(ActionEvent e) {
-				if (listaTubos.get(0).getTranslateX() <= - ancho / 12.3) {
-					
-					listaTubos.remove(0);
-					
-					Tuberia tubo = new Tuberia();
-					tubo.setTranslateX(listaTubos.get(listaTubos.size() - 1).getTranslateX() + (ancho / 4));
-					listaTubos.add(tubo);
-					
-					paneJuego.getChildren().add(tubo);
-				}
-				
-				for (int i = 0; i < listaTubos.size(); i++) {
-					
-					listaTubos.get(i).setTranslateX(listaTubos.get(i).getTranslateX() - 3.5);
-					
-				}
-				
-			}
+		for (int i = 0; i < listaNubes.size(); i++) {
+
+			paneNubes.getChildren().add(listaNubes.get(i).getSprite());
+
+		}
+		
+		FlappyApp.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
-		}));
-		
-		tubosLoop.setCycleCount(-1);
-		tubosLoop.play();
-		
+			@Override
+			public void handle(KeyEvent event) {
+				
+				if (event.getCode() == KeyCode.ESCAPE) {
+					
+					if(FlappyApp.scene == vistaJuego.getScene()) {
+						
+						musicaJuego.stop();
+						tubosLoop.stop();
+						FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
+						
+					}
+					
+				}
+			}
+		});
+
 	}
-	
-    public StackPane getJuegoView() {
+
+	public StackPane getJuegoView() {
 		return vistaJuego;
 	}
-	
+
 }
