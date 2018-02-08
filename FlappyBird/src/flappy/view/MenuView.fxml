@@ -5,12 +5,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="paneAnimation" prefHeight="200.0" prefWidth="200.0" />
       <BorderPane fx:id="paneButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <center>
             <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
@@ -20,12 +21,12 @@
                         <Image url="@../resources/flappyLog.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="onePlayerButton" mnemonicParsing="false" onAction="#onePlayerButtonAction" text="1 - Player">
+                  <Button fx:id="onePlayerButton" mnemonicParsing="false" onAction="#onePlayerButtonAction" text="One Player">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="twoPlayerButton" mnemonicParsing="false" onAction="#twoPlayerButtonAction" text="2 - Player">
+                  <Button fx:id="twoPlayerButton" mnemonicParsing="false" onAction="#twoPlayerButtonAction" text="Two Player">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

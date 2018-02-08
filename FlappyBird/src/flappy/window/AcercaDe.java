@@ -11,21 +11,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class AcercaDe implements Initializable {
-	
-    @FXML
-    private BorderPane paneNubes;
+public class AcercaDe extends Screen implements Initializable {
 
-    @FXML
-    private BorderPane paneButtons;
-    
-    StackPane vistaAcerca;
-    
-    @FXML
-    private Button volverButton;
-    
+	@FXML
+	private Pane paneAnimation;
+
+	@FXML
+	private BorderPane paneButtons;
+
+	StackPane vistaAcerca;
+
+	@FXML
+	private Button volverButton;
+
 	public AcercaDe() throws IOException {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/AboutView.fxml"));
@@ -35,32 +36,27 @@ public class AcercaDe implements Initializable {
 		vistaAcerca = loader.getRoot();
 
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		volverButton.setOnAction(e -> volverButtonAction(e));
-		
-	}
-	
-	@FXML
-    void volverButtonAction(ActionEvent event) {
-		
-    	try {
-    		
-			Menu nuevoMenu = new Menu();
-			FlappyApp.scene.setRoot(nuevoMenu.getMenuView());
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
+
+		for (int i = 0; i < listaNubes.size(); i++) {
+
+			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());
+
 		}
-		
+
 	}
-	
-    public StackPane getAcercaView() {
+
+	@FXML
+	void volverButtonAction(ActionEvent event) {
+		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
+	}
+
+	public StackPane getAcercaView() {
 		return vistaAcerca;
 	}
-	
+
 }

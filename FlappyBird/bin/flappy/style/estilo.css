@@ -3,9 +3,8 @@
 }
 
 .button{
-	-fx-font-family: 'FlappyBird';
-	-fx-font-size: 12pt;
-	-fx-font-weight: bold;
+	-fx-font-family: 'Flappy Bird';
+	-fx-font-size: 20pt;
 	-fx-border-color: black;
 	-fx-text-fill: darkred;
 	-fx-background-color: khaki;
