@@ -6,18 +6,23 @@ import javafx.scene.image.ImageView;
 
 public class Tuberia extends Group {
 	
-	double posicionHueco = (Screen.alto) * Math.random() / 2;
-	double diferencia = 80+Screen.alto/6+posicionHueco;
+	public double posicionHueco = (Screen.alto+50) * Math.random() / 2;
+	public double diferencia = 100+Screen.alto/6+posicionHueco;
+	public double tamanioHueco = 20;
+	public Sprite tubeUp, tubeDown;
 
 	public Tuberia() {
 
-		Sprite tubeUp = new Sprite();
+		tubeUp = new Sprite();
 		tubeUp.setSprite(new ImageView("/flappy/resources/flappyTubeUp.png"));
-		tubeUp.setPositionY(diferencia-Screen.alto-20);
+		//Tamaño del hueco entre tubeUp y tubeDown
+		tubeUp.setPositionY(diferencia-Screen.alto-tamanioHueco);
+		tubeUp.setPositionX(1400);
 
-		Sprite tubeDown = new Sprite();
+		tubeDown = new Sprite();
 		tubeDown.setSprite(new ImageView("/flappy/resources/flappyTubeDown.png"));
 		tubeDown.setPositionY(diferencia);
+		tubeDown.setPositionX(1400);
 
 		getChildren().addAll(tubeUp.getSprite(), tubeDown.getSprite());
 

@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sound.Sound;
+import flappy.sound.Reproductor;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +24,9 @@ public class Juego extends Screen implements Initializable {
 
 	StackPane vistaJuego = new StackPane();
 	
-	InputStream juegoMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/wily12.mp3");
+	InputStream juegoMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/powerRangers.mp3");
 	
-	Sound musicaJuego;
+	Reproductor musicaJuego;
 
 	public Juego() throws IOException {
 
@@ -43,7 +43,7 @@ public class Juego extends Screen implements Initializable {
 		
 		try {
 			
-			musicaJuego = new Sound(juegoMP3);
+			musicaJuego = new Reproductor(juegoMP3);
 			musicaJuego.play();
 			
 		} catch (JavaLayerException e1) {
@@ -57,7 +57,7 @@ public class Juego extends Screen implements Initializable {
 		for (int i = 0; i < listaNubes.size(); i++) {
 
 			paneNubes.getChildren().add(listaNubes.get(i).getSprite());
-
+			
 		}
 		
 		FlappyApp.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sound.Sound;
+import flappy.sound.Reproductor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +32,9 @@ public class Menu extends Screen implements Initializable {
 
 	InputStream menuMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/shootingStars.mp3");
 	
-	Sound musicaMenu;
+	Reproductor musicaMenu;
+	
+	boolean musicaOff = true;
 	
 	public Menu() throws IOException {
 
@@ -54,7 +56,7 @@ public class Menu extends Screen implements Initializable {
 		
 		try {
 			
-			musicaMenu = new Sound(menuMP3);
+			musicaMenu = new Reproductor(menuMP3);
 			musicaMenu.play();
 			
 		} catch (JavaLayerException e1) {
