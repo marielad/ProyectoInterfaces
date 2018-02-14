@@ -16,7 +16,7 @@
          <center>
             <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="200.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/flappyLog.png" />
                      </image>
@@ -32,6 +32,11 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="highScoreButton" mnemonicParsing="false" onAction="#highScoreButtonAction" text="HighScores">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#optionsButtonAction" text="Options">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

@@ -1,12 +1,10 @@
 package flappy.window;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sound.Reproductor;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javazoom.jl.decoder.JavaLayerException;
 
 public class Juego extends Screen implements Initializable {
 
@@ -23,10 +20,6 @@ public class Juego extends Screen implements Initializable {
 	private Pane paneNubes, paneJuego, panePuntuacion;
 
 	StackPane vistaJuego = new StackPane();
-	
-	InputStream juegoMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/powerRangers.mp3");
-	
-	Reproductor musicaJuego;
 
 	public Juego() throws IOException {
 
@@ -41,16 +34,7 @@ public class Juego extends Screen implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		try {
-			
-			musicaJuego = new Reproductor(juegoMP3);
-			musicaJuego.play();
-			
-		} catch (JavaLayerException e1) {
-			
-			e1.printStackTrace();
-			
-		}
+		musicaJuego.play();
 		
 		creacionTubos(paneJuego);
 
@@ -76,7 +60,9 @@ public class Juego extends Screen implements Initializable {
 					}
 					
 				}
+				
 			}
+			
 		});
 
 	}

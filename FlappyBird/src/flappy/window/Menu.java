@@ -1,12 +1,10 @@
 package flappy.window;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sound.Reproductor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javazoom.jl.decoder.JavaLayerException;
 
 public class Menu extends Screen implements Initializable {
 
@@ -28,13 +25,7 @@ public class Menu extends Screen implements Initializable {
 	StackPane vistaMenu;
 
 	@FXML
-	private Button onePlayerButton, twoPlayerButton, highScoreButton, aboutButton, exitButton;
-
-	InputStream menuMP3 = getClass().getClassLoader().getResourceAsStream("flappy/sound/shootingStars.mp3");
-	
-	Reproductor musicaMenu;
-	
-	boolean musicaOff = true;
+	private Button onePlayerButton, twoPlayerButton, highScoreButton, optionsButton, aboutButton, exitButton;
 	
 	public Menu() throws IOException {
 
@@ -54,17 +45,8 @@ public class Menu extends Screen implements Initializable {
 		highScoreButton.setOnAction(e -> highScoreButtonAction(e));
 		aboutButton.setOnAction(e -> aboutButtonAction(e));
 		
-		try {
-			
-			musicaMenu = new Reproductor(menuMP3);
-			musicaMenu.play();
-			
-		} catch (JavaLayerException e1) {
-			
-			e1.printStackTrace();
-			
-		}
-
+		musicaMenu.play();
+		
 		creacionNubes();
 
 	}
@@ -99,6 +81,7 @@ public class Menu extends Screen implements Initializable {
 
 			MejoresPuntuaciones nuevoPuntuacion = new MejoresPuntuaciones();
 			FlappyApp.scene.setRoot(nuevoPuntuacion.getPuntuacionView());
+			
 
 		} catch (IOException e) {
 
@@ -107,6 +90,23 @@ public class Menu extends Screen implements Initializable {
 		}
 
 	}
+	
+    @FXML
+    void optionsButtonAction(ActionEvent event) {
+
+		try {
+
+			Opciones nuevasOpciones = new Opciones();
+			FlappyApp.scene.setRoot(nuevasOpciones.getOpcionView());
+			
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+    	
+    }
 
 	@FXML
 	void aboutButtonAction(ActionEvent event) {
@@ -115,7 +115,7 @@ public class Menu extends Screen implements Initializable {
 
 			AcercaDe nuevoAcerca = new AcercaDe();
 			FlappyApp.scene.setRoot(nuevoAcerca.getAcercaView());
-
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -130,7 +130,11 @@ public class Menu extends Screen implements Initializable {
 	}
 
 	public StackPane getMenuView() {
-
+		
+		//sigue estando la changada
+		
+		musicaMenu.play();
+		
 		for (int i = 0; i < listaNubes.size(); i++) {
 
 			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());

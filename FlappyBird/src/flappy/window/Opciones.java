@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class AcercaDe extends Screen implements Initializable {
+public class Opciones extends Screen implements Initializable {
 
 	@FXML
 	private Pane paneAnimation;
@@ -22,24 +22,25 @@ public class AcercaDe extends Screen implements Initializable {
 	@FXML
 	private BorderPane paneButtons;
 
-	StackPane vistaAcerca;
+	StackPane vistaOpcion;
 
 	@FXML
-	private Button volverButton;
+	private Button volverButton, muteButton;
 
-	public AcercaDe() throws IOException {
+	public Opciones() throws IOException {
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/AboutView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/OptionView.fxml"));
 		loader.setController(this);
 		loader.load();
 
-		vistaAcerca = loader.getRoot();
+		vistaOpcion = loader.getRoot();
 
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		muteButton.setOnAction(e -> muteButtonAction(e));
 		volverButton.setOnAction(e -> volverButtonAction(e));
 
 		for (int i = 0; i < listaNubes.size(); i++) {
@@ -49,6 +50,14 @@ public class AcercaDe extends Screen implements Initializable {
 		}
 
 	}
+	
+    @FXML
+    void muteButtonAction(ActionEvent event) {
+    	
+    	musicaMenu.mute();
+    	musicaJuego.mute();
+    	
+    }
 
 	@FXML
 	void volverButtonAction(ActionEvent event) {
@@ -57,8 +66,8 @@ public class AcercaDe extends Screen implements Initializable {
 		
 	}
 
-	public StackPane getAcercaView() {
-		return vistaAcerca;
+	public StackPane getOpcionView() {
+		return vistaOpcion;
 	}
 
 }

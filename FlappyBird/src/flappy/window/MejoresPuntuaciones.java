@@ -52,7 +52,10 @@ public class MejoresPuntuaciones extends Screen implements Initializable {
 
 	@FXML
 	void volverButtonAction(ActionEvent event) {
+
 		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
+	
+		
 	}
 
 	public StackPane getPuntuacionView() {

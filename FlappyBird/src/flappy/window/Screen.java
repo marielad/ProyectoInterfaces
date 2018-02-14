@@ -2,22 +2,25 @@ package flappy.window;
 
 import java.util.ArrayList;
 
+import flappy.sound.Reproductor;
 import flappy.sprites.Nube;
 import flappy.sprites.Tuberia;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 
 public class Screen {
 
-	long lastUpdate = 0;
+	public static long lastUpdate = 0;
 
-	boolean decidirMovimiento = false;
+	public static boolean decidirMovimiento = false;
 
 	public static final int ancho = 1000;
-	public static final int alto = 400;
+	public static final int alto = 425;
 
 	public static AnimationTimer nubesLoop, tubosLoop, animacionTubo;
+	
+	Reproductor musicaMenu = new Reproductor("bitVenture.mp3");
+	Reproductor musicaJuego = new Reproductor("attackOnTitan.mp3");
 
 	public static ArrayList<Nube> listaNubes;
 	public static ArrayList<Tuberia> listaTubos;
@@ -27,7 +30,7 @@ public class Screen {
 	}
 
 	public void creacionNubes() {
-
+		
 		listaNubes = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
@@ -44,15 +47,15 @@ public class Screen {
 
 				for (int i = 0; i < listaNubes.size(); i++) {
 
-					if (listaNubes.get(i).getSprite().getX() < -100 * listaNubes.get(i).getSprite().getScaleX()) {
-
+					if (listaNubes.get(i).getSprite().getX() < - 175 * listaNubes.get(i).getSprite().getScaleX()) {
+						//175 pixeles de reaparicion, y desaparicion
 						listaNubes.get(i).getSprite().setX(listaNubes.get(i).getSprite().getX() + ancho
-								+ 100 * listaNubes.get(i).getSprite().getScaleX());
+								+ 175 * listaNubes.get(i).getSprite().getScaleX());
 
 					}
-
-					listaNubes.get(i).getSprite().setX(listaNubes.get(i).getSprite().getX() - (i / 3 + 0.75));
-
+					//velocidad de las nubes
+					listaNubes.get(i).getSprite().setX(listaNubes.get(i).getSprite().getX() - (i / 3 + 0.5));
+					
 				}
 
 			}
@@ -69,7 +72,7 @@ public class Screen {
 
 		for (int i = 0; i < 5; i++) {
 
-			Tuberia tubo = new Tuberia();
+			Tuberia tubo = new Tuberia(false, false);
 			tubo.setTranslateX(i * (ancho / 4));
 			listaTubos.add(tubo);
 			juego.getChildren().add(tubo);
@@ -85,103 +88,17 @@ public class Screen {
 
 					listaTubos.remove(0);
 					juego.getChildren().remove(0);
+					Tuberia tubo;
+					//añadir dificultades en el futuro menu de seleccion
+					if (Math.random() < 0.4) {
+						tubo = new Tuberia(true, false);
+					} else if (Math.random() > 0.85) {
+						tubo = new Tuberia(true, true);
+					} else {
+						tubo = new Tuberia(false, false);
+					}
 
-					Tuberia tubo = new Tuberia();
 					tubo.setTranslateX(listaTubos.get(listaTubos.size() - 1).getTranslateX() + (ancho / 4));
-
-					if ((Math.random() * 2) > 1.3) {
-
-						tubo.setRotationAxis(Rotate.Z_AXIS);
-						tubo.setRotate(-15 + 30 * Math.random());
-						tubo.setTranslateY(-40);
-
-					}
-
-					if ((Math.random() * 2) > 0.1) {
-
-						animacionTubo = new AnimationTimer() {
-
-							@Override
-							public void handle(long now) {
-
-								if (now - lastUpdate >= 1000_000_000) {
-
-									if (decidirMovimiento == false) {
-
-										decidirMovimiento = true;
-
-									} else if (decidirMovimiento == true) {
-
-										decidirMovimiento = false;
-
-									}
-
-									lastUpdate = now;
-
-								}
-
-								if (decidirMovimiento == true) {
-
-									tubo.setTranslateY(tubo.getTranslateY() + 0.75);
-
-								}
-
-								if (decidirMovimiento == false) {
-
-									tubo.setTranslateY(tubo.getTranslateY() - 0.75);
-
-								}
-
-							}
-
-						};
-
-						animacionTubo.start();
-
-					}
-
-					if ((Math.random() * 2) > 0.1) {
-
-						animacionTubo = new AnimationTimer() {
-
-							@Override
-							public void handle(long now) {
-
-								if (now - lastUpdate >= 1000_000_000) {
-
-									if (decidirMovimiento == false) {
-
-										decidirMovimiento = true;
-
-									} else if (decidirMovimiento == true) {
-
-										decidirMovimiento = false;
-
-									}
-
-									lastUpdate = now;
-
-								}
-
-								if (decidirMovimiento == false) {
-
-									tubo.setTranslateY(tubo.getTranslateY() + 0.75);
-
-								}
-
-								if (decidirMovimiento == true) {
-									// velocidad vertical de los tubos
-									tubo.setTranslateY(tubo.getTranslateY() - 0.75);
-
-								}
-
-							}
-
-						};
-
-						animacionTubo.start();
-
-					}
 
 					listaTubos.add(tubo);
 					juego.getChildren().add(tubo);
@@ -189,9 +106,8 @@ public class Screen {
 				}
 
 				for (int i = 0; i < listaTubos.size(); i++) {
-
 					// velocidad horizontal de los tubos
-					listaTubos.get(i).setTranslateX(listaTubos.get(i).getTranslateX() - 5);
+					listaTubos.get(i).setTranslateX(listaTubos.get(i).getTranslateX() - 3);
 
 				}
 
