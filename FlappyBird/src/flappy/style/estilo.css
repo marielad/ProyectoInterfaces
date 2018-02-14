@@ -21,3 +21,17 @@
 	-fx-text-fill: khaki;
 	-fx-background-color: forestgreen;
 }
+
+#textLabel{
+	-fx-font-family: 'consolas';
+}
+
+#listScore{
+	-fx-background-color: transparent;
+	-fx-font-family: 'consolas';
+}
+
+.list-cell { -fx-text-fill: black; -fx-alignment: center;}
+.list-cell:odd { -fx-background-color: transparent}
+.list-cell:even { -fx-background-color: transparent}
+.list-cell:filled:hover { -fx-background-color: transparent}

@@ -1,4 +1,4 @@
-package flappy.bd;
+package flappy.window;
 
 
 
@@ -14,13 +14,6 @@ import org.hsqldb.server.ServerAcl.AclFormatException;
 import methods.CargarFicheros;
 
 public class Conexion {
-	
-	/** 
-	 * 
-	 * @author Jorge Delgado, Ricardo Vargas 
-	 *
-	 */
-
 	Connection conn = null;
 	Statement stmt;
 	

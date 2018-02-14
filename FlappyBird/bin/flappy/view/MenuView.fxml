@@ -5,17 +5,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="paneAnimation" prefHeight="200.0" prefWidth="200.0" />
       <BorderPane fx:id="paneButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <center>
             <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="200.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/flappyLog.png" />
                      </image>
@@ -31,6 +32,11 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="highScoreButton" mnemonicParsing="false" onAction="#highScoreButtonAction" text="HighScores">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#optionsButtonAction" text="Options">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
