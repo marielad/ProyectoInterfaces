@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,13 +15,14 @@
       <Pane fx:id="paneAnimation" prefHeight="200.0" prefWidth="200.0" />
       <BorderPane fx:id="paneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <center>
-            <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="200.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="172.0" fitWidth="501.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/flappyAbout.png" />
+                        <Image url="@../resources/flappyAbout2.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="textLabel" text="textLabel" textAlignment="CENTER" />
                </children>
                <opaqueInsets>
                   <Insets />
