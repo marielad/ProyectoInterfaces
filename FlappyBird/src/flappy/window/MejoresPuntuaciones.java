@@ -11,21 +11,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class MejoresPuntuaciones implements Initializable {
-	
-    @FXML
-    private BorderPane paneNubes;
+public class MejoresPuntuaciones extends Screen implements Initializable {
 
-    @FXML
-    private BorderPane paneButtons;
-    
-    StackPane vistaPuntuacion;
-    
-    @FXML
-    private Button volverButton;
-    
+	@FXML
+	private Pane paneAnimation;
+
+	@FXML
+	private BorderPane paneButtons;
+
+	StackPane vistaPuntuacion;
+
+	@FXML
+	private Button volverButton;
+
 	public MejoresPuntuaciones() throws IOException {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/HighView.fxml"));
@@ -35,32 +36,30 @@ public class MejoresPuntuaciones implements Initializable {
 		vistaPuntuacion = loader.getRoot();
 
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		volverButton.setOnAction(e -> volverButtonAction(e));
-		
-	}
-	
-	@FXML
-    void volverButtonAction(ActionEvent event) {
-		
-    	try {
-    		
-			Menu nuevoMenu = new Menu();
-			FlappyApp.scene.setRoot(nuevoMenu.getMenuView());
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
+
+		for (int i = 0; i < listaNubes.size(); i++) {
+
+			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());
+
 		}
+
+	}
+
+	@FXML
+	void volverButtonAction(ActionEvent event) {
+
+		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
+	
 		
 	}
-	
-    public StackPane getPuntuacionView() {
+
+	public StackPane getPuntuacionView() {
 		return vistaPuntuacion;
 	}
-	
+
 }
