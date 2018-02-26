@@ -5,16 +5,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
+import gamefx.Screen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
-public class Opciones extends Screen implements Initializable {
+public class Opciones extends Screen {
 
 	@FXML
 	private Pane paneAnimation;
@@ -22,19 +22,11 @@ public class Opciones extends Screen implements Initializable {
 	@FXML
 	private BorderPane paneButtons;
 
-	StackPane vistaOpcion;
-
 	@FXML
 	private Button volverButton, muteButton;
 
 	public Opciones() throws IOException {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/OptionView.fxml"));
-		loader.setController(this);
-		loader.load();
-
-		vistaOpcion = loader.getRoot();
-
+		super("/flappy/view/OptionView.fxml");
 	}
 
 	@Override
@@ -43,31 +35,28 @@ public class Opciones extends Screen implements Initializable {
 		muteButton.setOnAction(e -> muteButtonAction(e));
 		volverButton.setOnAction(e -> volverButtonAction(e));
 
-		for (int i = 0; i < listaNubes.size(); i++) {
-
-			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());
-
-		}
-
+		
 	}
 	
     @FXML
     void muteButtonAction(ActionEvent event) {
     	
-    	musicaMenu.mute();
-    	musicaJuego.mute();
+//    	musica.mute(true);
+//    	musicaJuego.mute(true);
     	
     }
 
+    @Override
+	protected void onKeyPressed(KeyEvent e) {
+		if (e.getCode().equals(KeyCode.ESCAPE)) {
+			stop();
+			FlappyApp.irA(FlappyApp.menu);
+		}
+	}
+    
 	@FXML
 	void volverButtonAction(ActionEvent event) {
-
-		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
-		
-	}
-
-	public StackPane getOpcionView() {
-		return vistaOpcion;
+		FlappyApp.irA(FlappyApp.menu);
 	}
 
 }

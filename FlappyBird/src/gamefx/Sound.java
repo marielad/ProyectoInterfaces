@@ -1,64 +1,49 @@
-package flappy.sound;
+package gamefx;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 
-public class Reproductor {
+public class Sound {
+	
+	private MediaPlayer player;
 
-	MediaPlayer player;
+	public Sound(String ruta) {
+		String url = getClass().getResource(ruta).toExternalForm();
+		player = new MediaPlayer(new Media(url));
+	}
 
-	public Reproductor(String ruta) {
-			
-		player = new MediaPlayer(new Media(this.getClass().getResource(ruta).toExternalForm()));
-		
+	public void playIndefinite() {
 		player.setCycleCount(MediaPlayer.INDEFINITE);
-
+		player.play();
 	}
 
 	public void play() {
-		
+		player.setCycleCount(1);
 		player.play();
-
 	}
 	
 	public void pause() {
-		
 		if(player.getStatus() == Status.PLAYING) {
-			
 			player.pause();
-			
 		}
 	}
 	
 	public void resume() {
-		
 		if(player.getStatus() == Status.PAUSED) {
-			
 			player.play();
-			
 		}
-		
 	}
 
 	public void stop() {
-
 		player.stop();
-
 	}
 
-	public void mute() {
-
-		if (!player.isMute()) {
-
-			player.setMute(true);
-
-		} else {
-
-			player.setMute(false);
-
-		}
-
+	public void mute(Boolean mutear) {
+		player.setMute(mutear);
 	}
-
+	
+	public boolean isMuted() {
+		return player.isMute();
+	}
 }

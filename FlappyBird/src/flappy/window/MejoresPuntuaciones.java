@@ -2,94 +2,87 @@ package flappy.window;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
+import gamefx.Screen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import methods.CargarFicheros;
 
-public class MejoresPuntuaciones extends Screen implements Initializable {
+public class MejoresPuntuaciones extends Screen {
 
 	@FXML
-	private Pane paneAnimation;
+	private Pane paneAnimation, paneScore;
 
 	@FXML
 	private BorderPane paneButtons;
 
-	@FXML
-	private ListView<String> listScore;
-
 	StackPane vistaPuntuacion;
 
-	private ObservableList<String> datos = FXCollections.observableArrayList();
-
+	@FXML
+	private ListView<String> listScore; 
+	
 	@FXML
 	private Button volverButton;
 
+	
 	public MejoresPuntuaciones() throws IOException {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/flappy/view/HighView.fxml"));
-		loader.setController(this);
-		loader.load();
-
-		vistaPuntuacion = loader.getRoot();
-
+		super("/flappy/view/HighView.fxml");
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		volverButton.setOnAction(e -> volverButtonAction(e));
-
-		for (int i = 0; i < listaNubes.size(); i++) {
-
-			paneAnimation.getChildren().add(listaNubes.get(i).getSprite());
-
-		}
-
+		
 		try {
 			listScore.setItems(datosMySql());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
 
+	@Override
+	protected void onKeyPressed(KeyEvent e) {
+		if (e.getCode().equals(KeyCode.ESCAPE)) {
+			stop();
+			FlappyApp.irA(FlappyApp.menu);
+		}
+	}
+	
 	@FXML
 	void volverButtonAction(ActionEvent event) {
 
-		FlappyApp.scene.setRoot(FlappyApp.menuControl.getMenuView());
-
-	}
-
-	public StackPane getPuntuacionView() {
-		return vistaPuntuacion;
+		FlappyApp.irA(FlappyApp.menu);
+		
 	}
 
 	@SuppressWarnings("unused")
 	public ObservableList<String> datosMySql() throws Exception {
+		
+		ObservableList<String> datos = FXCollections.observableArrayList();
+		
 		int tamanioLista = 0;
 		int contador = 1;
 		int tamanio = 0;
 
-		Connection con = Conexion.conectarHSQL();
-
-		Statement stmt = con.createStatement();
+		Conexion conn = new Conexion();
+		Statement stmt = conn.getConexion().createStatement();
 		stmt.executeQuery(CargarFicheros.fileToString("script/registros.sql"));
 
 		try {
@@ -112,7 +105,7 @@ public class MejoresPuntuaciones extends Screen implements Initializable {
 
 			e.printStackTrace();
 		}
-
+		conn.closeConexion();
 		return datos;
 	}
 
