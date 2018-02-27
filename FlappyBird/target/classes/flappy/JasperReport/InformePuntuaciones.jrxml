@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MiPrimerInforme" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d265af59-4b49-49eb-a761-ebc170729e3a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="358"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="628"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	</field>
+	<field name="puntos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[puntos]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="20" width="555" height="65" uuid="54646a8a-a929-413d-80d8-9734a8111fba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gill Sans Ultra Bold Condensed" size="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="72" y="0" width="410" height="60" uuid="e3fdf614-123a-4da1-885f-66fa8096d62f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Este informe muestra un detalle de las últimas puntuaciones que se han registrado en nuestro programa.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="22" y="0" width="50" height="50" uuid="447a2147-04e2-4136-9f89-2e259ec054ba"/>
+				<imageExpression><![CDATA["https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12672144,width=178,height=178/swaggy-bird-flappy-bird.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="482" y="0" width="50" height="50" uuid="c6ec6149-ded6-405b-998f-c8a33f82f1db"/>
+				<imageExpression><![CDATA["https://image.spreadshirtmedia.com/image-server/v1/mp/designs/12672144,width=178,height=178/swaggy-bird-flappy-bird.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="80" width="278" height="20" uuid="7c7fec0a-0e53-4978-ab2d-ce7f9beaea00">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a82e76d1-84c7-49ac-90e5-8811424e893a"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="80" width="277" height="20" uuid="966b2e89-b53c-4051-9d85-17adf4f36974">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c92ae2a3-4e0d-4077-a4ae-7dd62369ab70"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Score:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="278" height="31" uuid="9c039dc1-9a17-4c03-92b8-86adad700534">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a82e76d1-84c7-49ac-90e5-8811424e893a"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="277" height="31" uuid="ce884c6a-75a1-44a1-90c9-c4c838915bd3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{puntos}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="60"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

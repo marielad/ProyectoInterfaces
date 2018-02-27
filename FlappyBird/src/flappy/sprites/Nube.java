@@ -1,20 +1,46 @@
 package flappy.sprites;
 
-import flappy.window.Screen;
-import javafx.scene.image.ImageView;
+import flappy.app.FlappyApp;
+import gamefx.Sprite;
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 
 public class Nube extends Sprite {
 	
-	public Nube() {
-		
-		setSprite(new ImageView("/flappy/resources/flappyCloud.png"));
-		setPositionX(Math.random() * Screen.ancho);
-		setPositionY(Math.random() * Screen.alto - 40);
+	private static final String NUBE = "/flappy/resources/flappyCloud.png";
+	
+ 	private TranslateTransition mover;
+
+	public Nube(Duration duration) {
+		super(NUBE);
+		setLayoutY(Math.random() * FlappyApp.ALTO);			
 		setScaleX(Math.random() / 2.0 + 0.5);
 		setScaleY(Math.random() / 2.0 + 0.5);
 		setOpacity(0.5);
+		
+		mover = new TranslateTransition(duration, this);
+		mover.setInterpolator(Interpolator.LINEAR);
+		mover.setFromX(FlappyApp.ANCHO);
+		mover.setToX(-getImage().getWidth());
+		mover.setDuration(duration);
+		mover.setOnFinished(e -> {
+			mover.playFromStart();
+		});
+		
 	}
 	
-}
+	public void mover() {
+		mover.playFrom(Duration.seconds(Math.random() * mover.getDuration().toSeconds()));
+	}
+	
+	public void pause() {
+		mover.pause();
+	}
+	
+	public void resume() {
+		mover.play();
+	}
+}	
 
 
