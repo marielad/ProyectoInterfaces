@@ -2,11 +2,11 @@ package flappy.app;
 
 import java.io.IOException;
 
-import flappy.window.AcercaDe;
-import flappy.window.Juego;
-import flappy.window.MejoresPuntuaciones;
+import flappy.window.About;
+import flappy.window.Game;
+import flappy.window.HighScore;
 import flappy.window.Menu;
-import flappy.window.Opciones;
+import flappy.window.Options;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,33 +20,31 @@ public class FlappyApp extends Application {
 
 	public static Stage primaryStage;
 	private static Scene scene;
-	
+
 	public static Menu menu;
-	public static AcercaDe acercaDe;
-	public static Juego juego;
-	public static MejoresPuntuaciones mejores;
-	public static Opciones opciones;
+	public static About acercaDe;
+	public static Game juego;
+	public static HighScore mejores;
+	public static Options opciones;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-
 		FlappyApp.primaryStage = primaryStage;
 		
 		menu = new Menu();
-		acercaDe = new AcercaDe();
-		juego = new Juego();
-		mejores = new MejoresPuntuaciones();
-		opciones = new Opciones();
+		acercaDe = new About();
+		juego = new Game();
+		mejores = new HighScore();
+		opciones = new Options();
 
 		scene = new Scene(menu, ANCHO, ALTO);
-		scene.getStylesheets().add(getClass().getResource("/flappy/style/estilo.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/flappy/style/style.css").toExternalForm());
 
 		primaryStage.getIcons().add(new Image("/flappy/resources/flappyIcon.png"));
 		primaryStage.setTitle("Flappy Bird");
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();		
-
 	}
 
 	public static void main(String[] args) {

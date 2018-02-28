@@ -10,7 +10,7 @@
 
 <fx:root prefHeight="480.0" prefWidth="640.0" type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<Pane fx:id="animationPane" prefHeight="200.0" prefWidth="200.0" />
+		<Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
       <VBox alignment="CENTER" fillWidth="false" spacing="5.0">
          <children>
 						<ImageView fx:id="titleImage" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">

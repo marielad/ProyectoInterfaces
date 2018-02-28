@@ -29,7 +29,7 @@ public class Sprite extends ImageView {
 			double y = (nv.intValue() / getColumns()) * height;
 			setViewport(new Rectangle2D(x, y, width, height));
 		});
-		this.setImageIndex(0);		
+		this.setImageIndex(0);	
 	}
 
 	public final ReadOnlyIntegerProperty countProperty() {
@@ -59,5 +59,5 @@ public class Sprite extends ImageView {
 	public final void setImageIndex(final int imageIndex) {
 		this.imageIndexProperty().set(imageIndex);
 	}
-
+	
 }

@@ -8,7 +8,7 @@ public class CargarFicheros {
 	
 	/** 
 	 * 
-	 * @author Jorge Delegado,Ricardo Vargas 
+	 * @author Jorge Delegado
 	 *
 	 */
 

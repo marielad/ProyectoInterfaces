@@ -38,7 +38,7 @@ public abstract class Screen extends StackPane implements Initializable {
 
 	public void start() {
 		gameLoop.start();
-		Platform.runLater(() -> requestFocus());//Preguntar a Fran
+		Platform.runLater(() -> requestFocus());
 	}
 	
 	public void stop() {

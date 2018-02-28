@@ -5,25 +5,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sound.Sonidos;
-import flappy.sprites.Nubes;
-import gamefx.Screen;
-import gamefx.Sound;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
-public class Menu extends Screen {
-
-	private Sound musica;
-	private Nubes nubes;
-
+public class Menu extends Background {
+	
 	@FXML
-	private Pane animationPane;
+	private Pane paneNubes;
 
 	@FXML
 	private Button onePlayerButton, twoPlayerButton, highScoreButton, optionsButton, aboutButton, exitButton;
@@ -34,39 +25,40 @@ public class Menu extends Screen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		musica = Sonidos.MENU;
-		
 		onePlayerButton.setOnAction(e -> onePlayerButtonAction(e));
 		twoPlayerButton.setOnAction(e -> twoPlayerButtonAction(e));
 		highScoreButton.setOnAction(e -> highScoreButtonAction(e));
 		aboutButton.setOnAction(e -> aboutButtonAction(e));
-		
-		nubes = new Nubes(30);
-		animationPane.getChildren().add(nubes);
 	}
 
 	@Override
 	public void start() {
 		super.start();
-		nubes.mover();
-		musica.play();
+		paneNubes.getChildren().add(nubes);
+		musicaMenu.play();
 		Platform.runLater(() -> onePlayerButton.requestFocus());
 	}
 
 	@Override
 	public void stop() {
 		super.stop();
-		musica.stop();
+		paneNubes.getChildren().remove(nubes);
 	}
 
 	@FXML
 	void onePlayerButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.juego);
+		SelectCharacter seleccion;
+		try {
+			seleccion = new SelectCharacter();
+			FlappyApp.irA(seleccion);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void twoPlayerButtonAction(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -89,14 +81,4 @@ public class Menu extends Screen {
 		FlappyApp.getPrimaryStage().close();
 	}
 	
-	@Override
-	protected void onKeyPressed(KeyEvent e) {
-		if (e.getCode().equals(KeyCode.M)) {
-			if (!musica.isMuted()) {
-				musica.mute(true);
-			}else {
-				musica.mute(false);
-			}
-		}
-	}
 }
