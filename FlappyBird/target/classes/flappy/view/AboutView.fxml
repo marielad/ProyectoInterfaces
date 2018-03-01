@@ -46,7 +46,7 @@
             </VBox>
          </top>
          <center>
-            <TextArea fx:id="acercaDeText" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="acercaDeText" editable="false" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

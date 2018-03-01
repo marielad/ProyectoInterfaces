@@ -2,11 +2,14 @@ package flappy.window;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sprites.Bird;
+import flappy.database.ScoreDB;
 import flappy.sprites.Score;
+import flappy.sprites.Bird;
 import flappy.sprites.Tube;
 import flappy.sprites.Tubes;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -33,14 +37,16 @@ public class Game extends Background {
 	private Score puntuacion;
 
 	private Boolean pausado = false;
-	//Me da que esto es una changada
-	private StringProperty puntuacionTexto;
+	private StringProperty puntuacionTexto, nombreTexto;
 	
 	@FXML
-    private VBox buttonsBox;
+    private VBox buttonsBox, overBox;
+	
+	@FXML
+	private Label scoreLabel;
 
     @FXML
-    private Button resumeButton, optionsButton, exitButton;
+    private Button resumeButton, optionsButton, exitButton, tryAgainButton, exitButton1;
 
 	@FXML
 	private Pane paneNubes, paneJuego, panePuntuacion;
@@ -52,10 +58,14 @@ public class Game extends Background {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		buttonsBox.setVisible(false);
+		overBox.setVisible(false);
 		
+		tryAgainButton.setOnAction(e -> tryAgainButtonAction(e));
 		resumeButton.setOnAction(e -> resumeButtonAction(e));
 		optionsButton.setOnAction(e -> optionsButtonAction(e));
 		exitButton.setOnAction(e -> exitButtonAction(e));
+		exitButton1.setOnAction(e -> exitButtonAction(e));
+
 	}
 	
 	@Override
@@ -79,11 +89,19 @@ public class Game extends Background {
 		stop();
 		FlappyApp.irA(FlappyApp.menu);
 		buttonsBox.setVisible(false);
+		overBox.setVisible(false);
     }
 
 	@FXML
     void optionsButtonAction(ActionEvent event) {
-    	
+		FlappyApp.irA(FlappyApp.opciones);
+    }
+	
+	@FXML
+    void tryAgainButtonAction(ActionEvent event) {
+		overBox.setVisible(false);
+		stop();
+		start();
     }
 
 	@FXML
@@ -96,16 +114,16 @@ public class Game extends Background {
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
-		//Parte de la changada inicial
-		pajarito = SelectCharacter.pajarito;
+		pajarito = OnePlayer.pajarito;
 		pajarito.setTranslateX(100);
 		pajarito.setTranslateY(200);
 		puntuacion = new Score();
+		nombreTexto = OnePlayer.nombre;		
 		puntuacionTexto = new SimpleStringProperty(this, "puntuacionTexto", "SCORE:");
 		panePuntuacion.getChildren().add(puntuacion);
 		puntuacion.getPuntuacion().textProperty().bind(puntuacionTexto.concat(pajarito.getScore().asString()));
 		tuberias = new Tubes(FlappyApp.ANCHO, FlappyApp.ALTO, 7);
-		paneJuego.getChildren().addAll(tuberias, pajarito, pajarito.getShape());
+		paneJuego.getChildren().addAll(tuberias, pajarito);
 		tuberias.play();
 		musicaJuego.play();
 		pajarito.start();
@@ -121,6 +139,7 @@ public class Game extends Background {
 		paneJuego.getChildren().remove(pajarito);
 		paneNubes.getChildren().remove(nubes);
 		panePuntuacion.getChildren().remove(puntuacion);
+		pausado = false;
 	}
 	
 	private void pause() {
@@ -130,8 +149,6 @@ public class Game extends Background {
 		pajarito.pause();
 		nubes.pause();
 		pausado = true;
-		
-		System.out.println(pajarito.getShape().getBoundsInParent());
 	}
 	
 	private void resume() {
@@ -163,35 +180,58 @@ public class Game extends Background {
 				tuberia.setTranslateX(tuberias.getChildren().get(tuberias.getChildren().size() - 1).getTranslateX() + (ESPACIO_ENTRE_TUBOS));
 				tuberia.setTranslateZ(POSICIONZ_PAJARITO);
 				
-				tuberias.getChildren().addAll(tuberia);
+				if (tuberias.getChildren().get(0).getTranslateX() <= -getWidth() + 100) {
+			          pajarito.setScore(pajarito.getScore().get()+1);
+			    }
+				
+				tuberias.getChildren().add(tuberia);
 				tuberias.getChildren().remove(0);
 			}
 			
 			for (Node tuberia : tuberias.getChildren()) {
 				tuberia.setTranslateX(tuberia.getTranslateX() - 3);
 			}
+			
 		}
-		
 		checkCollisions();
 	}
 
 	public void checkCollisions() {
 		for (Node node : tuberias.getChildren()) {
-			
+
 			if (node instanceof Tube) { 
 				Tube tuberia = (Tube) node;
 				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
 				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
-					gameOver();
+					if (!pausado) {
+						gameOver();
+					}
 				}
-				
 			}
-			
 		}
 	}
 	
 	private void gameOver() {
 		pause();
+		
+		try {
+			ScoreDB conn = new ScoreDB();
+			
+			PreparedStatement pstmt =  conn.getConexion().prepareStatement("INSERT INTO Puntuaciones VALUES (DEFAULT, ?, ?)");
+			pstmt.setString(1, nombreTexto.get());
+			pstmt.setInt(2, pajarito.getScore().get());
+			
+			pstmt.execute();
+			pstmt.close();
+			
+			conn.closeConexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString())));
+		overBox.setVisible(true);
 	}
 	
 }

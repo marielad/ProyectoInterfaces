@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="paneNubes" />
       <Pane fx:id="paneJuego" />
@@ -31,6 +31,22 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="exitButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
+               </children>
+            </VBox>
+            <VBox fx:id="overBox" alignment="CENTER" layoutX="455.0" layoutY="115.0" spacing="10.0">
+               <children>
+                  <Label fx:id="overLabel" text="Game Over">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="scoreLabel" text="Label" />
+                  <Button fx:id="tryAgainButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#tryAgainButtonAction" text="Try again">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="exitButton1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
                </children>
             </VBox>
          </children></Pane>

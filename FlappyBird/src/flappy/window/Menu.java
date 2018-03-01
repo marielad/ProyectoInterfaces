@@ -47,12 +47,24 @@ public class Menu extends Background {
 
 	@FXML
 	void onePlayerButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.seleccion);
+		OnePlayer seleccion;
+		try {
+			seleccion = new OnePlayer();
+			FlappyApp.irA(seleccion);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void twoPlayerButtonAction(ActionEvent event) {
-		
+		TwoPlayer seleccion;
+		try {
+			seleccion = new TwoPlayer();
+			FlappyApp.irA(seleccion);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

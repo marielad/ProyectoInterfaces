@@ -103,11 +103,16 @@
     -fx-padding: 0px;
 }
 
+#overLabel{
+	-fx-font-size: 30pt;
+	-fx-font-weight: bold;
+}
+
 #pausaLabel, #playerLabel {
 	-fx-font-size: 25.0pt;
 }
 
-#reportButton, #volverButton, #muteButton, #previousButton, #nextButton {
+#reportButton, #volverButton, #muteButton, #previousButton, #nextButton, #previousArribaButton, #nextArribaButton  {
 	-fx-background-color: transparent;
 	-fx-text-fill: transparent;
 	-fx-border-color: transparent;

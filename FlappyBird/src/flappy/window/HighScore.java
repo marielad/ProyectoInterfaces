@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.db.ScoreDB;
+import flappy.database.ScoreDB;
 import flappy.reports.InformeJasper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,15 +92,16 @@ public class HighScore extends Background {
 		paneNubes.getChildren().remove(nubes);
 	}
 	
-	@FXML
-	void volverButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.menu);
-	}
-
     @FXML
     void onReportButtonAction(ActionEvent event) {
     	InformeJasper informe = new InformeJasper();
 		informe.show();
     }
+	
+	@FXML
+	void volverButtonAction(ActionEvent event) {
+		FlappyApp.irA(FlappyApp.menu);
+	}
+
 
 }

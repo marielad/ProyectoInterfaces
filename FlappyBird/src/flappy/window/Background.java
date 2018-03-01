@@ -7,6 +7,7 @@ import flappy.sound.Sounds;
 import flappy.sprites.Clouds;
 import gamefx.Screen;
 import gamefx.Sound;
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -25,6 +26,7 @@ public abstract class Background extends Screen {
 	@Override
 	public void start() {
 		super.start();
+		Platform.runLater(() -> requestFocus());
 	}
 	
 	@Override
@@ -34,7 +36,6 @@ public abstract class Background extends Screen {
 	
 	@Override
 	protected void onKeyPressed(KeyEvent e) {
-		//Falta mutear la Screen Game con 'M'
 		if (e.getCode().equals(KeyCode.ESCAPE)) {
 			if(FlappyApp.primaryStage.getScene() != FlappyApp.menu.getScene()
 					&& FlappyApp.primaryStage.getScene() != FlappyApp.juego.getScene()) {
