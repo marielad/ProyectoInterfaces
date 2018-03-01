@@ -1,7 +1,8 @@
-package flappy.jasper;
+package flappy.reports;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import flappy.database.ScoreDB;
+import flappy.db.ScoreDB;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -19,20 +20,24 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class InformeJasper {
 
-	public static void main(String[] args) throws Exception {
-		List<Partida> datos = new ArrayList<>();
-		datos = cargarDatos();
+	public InformeJasper() {
+		try {
+			List<Partida> datos = new ArrayList<>();
+			datos = cargarDatos();
+			
+			InputStream is = InformeJasper.class.getResourceAsStream("InformePuntuaciones.jasper");
 
-		InputStream is = InformeJasper.class.getResourceAsStream("InformePuntuaciones.jasper");
+			Map<String, Object> parametros = new HashMap<>();
+			parametros.put("TITULO", "PUNTUACIONES");
 
-		Map<String, Object> parametros = new HashMap<>();
-		parametros.put("TITULO", "PUNTUACIONES");
+			JasperPrint jp = JasperFillManager.fillReport(is, parametros, new JRBeanCollectionDataSource(datos));
 
-		JasperPrint jp = JasperFillManager.fillReport(is, parametros, new JRBeanCollectionDataSource(datos));
-
-		JasperExportManager.exportReportToPdfFile(jp, "report\\Informe.pdf");
-
-		Desktop.getDesktop().open(new File("report\\Informe.pdf"));
+			JasperExportManager.exportReportToPdfFile(jp, "report\\Informe.pdf");
+			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	public static List<Partida> cargarDatos() throws Exception {
@@ -42,24 +47,28 @@ public class InformeJasper {
 		Statement stmt = conn.getConexion().createStatement();
 
 		try {
-
 			ResultSet rstSet = stmt.executeQuery("SELECT Nombre, Puntos FROM Puntuaciones ORDER BY Puntos DESC");
 
 			while (rstSet.next()) {
-
 				String nomb = rstSet.getString(1);
 				int puntos = rstSet.getInt(2);
 
 				datos.add(new Partida(nomb, puntos));
-
 			}
-
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
+		
 		conn.closeConexion();
 		return datos;
+	}
+	
+	public void show() {
+		try {
+			Desktop.getDesktop().open(new File("report\\Informe.pdf"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

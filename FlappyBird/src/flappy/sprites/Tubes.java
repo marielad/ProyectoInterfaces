@@ -11,20 +11,20 @@ public class Tubes extends Group {
 			Tube tuberia = new Tube(screenWidth, screenHeight,false, false);
 			tuberia.setTranslateX(i * (Game.ESPACIO_ENTRE_TUBOS));
 			tuberia.setTranslateZ(Game.POSICIONZ_PAJARITO);
-			getChildren().add(tuberia);
+			getChildren().addAll(tuberia);
 		}
 	}
 	
 	public void play() {
-		getChildren().stream().forEach(t -> ((Tube)t).play());
+		getChildren().stream().filter(t -> t instanceof Tube).forEach(t -> ((Tube)t).play());
 	}
 	
 	public void pause() {
-		getChildren().stream().forEach(t -> ((Tube)t).pause());
+		getChildren().stream().filter(t -> t instanceof Tube).forEach(t -> ((Tube)t).pause());
 	}
 	
 	public void stop() {
-		getChildren().stream().forEach(t -> ((Tube)t).stop());
+		getChildren().stream().filter(t -> t instanceof Tube).forEach(t -> ((Tube)t).stop());
 	}
 	
 }

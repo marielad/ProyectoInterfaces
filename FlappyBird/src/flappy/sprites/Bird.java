@@ -22,7 +22,8 @@ public class Bird extends Sprite {
  	private TranslateTransition saltar, caer;
  	private RotateTransition rotarPajarito;
  	private Timeline aleteo;
- 	private Ellipse collisionsBird;
+ 	
+ 	private Ellipse shape;
  	
  	//Pruebas Jorge
 	public static IntegerProperty score = new SimpleIntegerProperty(0);
@@ -64,10 +65,14 @@ public class Bird extends Sprite {
  		caer.setInterpolator(Interpolator.EASE_IN);
  		caer.setDuration(Duration.seconds(2));
  		
- 		collisionsBird = new Ellipse();
-		collisionsBird.centerXProperty().bind(translateXProperty().add(getFitWidth()/2));
-		collisionsBird.centerYProperty().bind(translateYProperty().add(12));
-		collisionsBird.rotateProperty().bind(rotateProperty());
+ 		shape = new Ellipse();
+		shape.centerXProperty().bind(translateXProperty().add(widthProperty().divide(2)));
+		shape.centerYProperty().bind(translateYProperty().add(heightProperty().divide(2)));
+		shape.rotateProperty().bind(rotateProperty());
+		shape.radiusXProperty().bind(widthProperty().divide(2));
+		shape.radiusYProperty().bind(heightProperty().divide(2));
+		shape.setVisible(false);
+		setShape(shape);
 
 	}
  	
@@ -123,12 +128,7 @@ public class Bird extends Sprite {
  	public void aleteo() {
  		aleteo.playFromStart();
  	}
- 	
- 	public Ellipse getBird() {
-		return collisionsBird;
-	}
 
- 	//Pruebas Jorge
 	public final IntegerProperty getScore() {
 		return score;
 	}

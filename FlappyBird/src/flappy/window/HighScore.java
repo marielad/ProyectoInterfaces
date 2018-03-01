@@ -8,7 +8,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.database.ScoreDB;
+import flappy.db.ScoreDB;
+import flappy.reports.InformeJasper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class HighScore extends Background {
     private ListView<String> listScore;
 
 	@FXML
-	private Button volverButton;
+	private Button volverButton, reportButton;
 
 	public HighScore() throws IOException {
 		super("/flappy/view/HighView.fxml");
@@ -39,6 +40,7 @@ public class HighScore extends Background {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		volverButton.setOnAction(e -> volverButtonAction(e));
+		reportButton.setOnAction(e -> onReportButtonAction(e));
 		
 		try {
 			listScore.setItems(cargarDatos());
@@ -95,5 +97,10 @@ public class HighScore extends Background {
 		FlappyApp.irA(FlappyApp.menu);
 	}
 
+    @FXML
+    void onReportButtonAction(ActionEvent event) {
+    	InformeJasper informe = new InformeJasper();
+		informe.show();
+    }
 
 }

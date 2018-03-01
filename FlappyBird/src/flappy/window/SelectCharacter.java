@@ -59,7 +59,7 @@ public class SelectCharacter extends Background {
 		paneNubes.getChildren().addAll(nubes, pajarito);
 		pajarito.aleteo();
 		pajarito.setTranslateX(362);
-		pajarito.setTranslateY(228);
+		pajarito.setTranslateY(158);
 	}
 
 	@Override

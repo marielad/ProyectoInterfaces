@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.sprites.Score;
 import flappy.sprites.Bird;
+import flappy.sprites.Score;
 import flappy.sprites.Tube;
 import flappy.sprites.Tubes;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Shape;
 
 public class Game extends Background {
 
@@ -104,7 +105,7 @@ public class Game extends Background {
 		panePuntuacion.getChildren().add(puntuacion);
 		puntuacion.getPuntuacion().textProperty().bind(puntuacionTexto.concat(pajarito.getScore().asString()));
 		tuberias = new Tubes(FlappyApp.ANCHO, FlappyApp.ALTO, 7);
-		paneJuego.getChildren().addAll(tuberias, pajarito);
+		paneJuego.getChildren().addAll(tuberias, pajarito, pajarito.getShape());
 		tuberias.play();
 		musicaJuego.play();
 		pajarito.start();
@@ -129,6 +130,8 @@ public class Game extends Background {
 		pajarito.pause();
 		nubes.pause();
 		pausado = true;
+		
+		System.out.println(pajarito.getShape().getBoundsInParent());
 	}
 	
 	private void resume() {
@@ -160,7 +163,7 @@ public class Game extends Background {
 				tuberia.setTranslateX(tuberias.getChildren().get(tuberias.getChildren().size() - 1).getTranslateX() + (ESPACIO_ENTRE_TUBOS));
 				tuberia.setTranslateZ(POSICIONZ_PAJARITO);
 				
-				tuberias.getChildren().add(tuberia);
+				tuberias.getChildren().addAll(tuberia);
 				tuberias.getChildren().remove(0);
 			}
 			
@@ -168,18 +171,24 @@ public class Game extends Background {
 				tuberia.setTranslateX(tuberia.getTranslateX() - 3);
 			}
 		}
-		// Colisión Tubos
+		
 		checkCollision();
 	}
 
 	public void checkCollision() {
-		Boolean interseccion = false;
-		
-//		Path p1 = (Path) Shape.intersect(pajarito.getBird(), tuberias.getBoundsInParent());
-		
-//		if (!p1.getElements().isEmpty()) {
-//			gameOver();
-//		}
+		for (Node node : tuberias.getChildren()) {
+			
+			if (node instanceof Tube) { 
+				Tube tuberia = (Tube) node;
+				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
+				if (intersection.getBoundsInLocal().getWidth() != -1) {
+					System.out.println("zasca del pajarito!!!");
+					gameOver();
+				}
+				
+			}
+			
+		}
 	}
 	
 	private void gameOver() {

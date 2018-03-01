@@ -107,7 +107,7 @@
 	-fx-font-size: 25.0pt;
 }
 
-#volverButton, #muteButton, #previousButton, #nextButton {
+#reportButton, #volverButton, #muteButton, #previousButton, #nextButton {
 	-fx-background-color: transparent;
 	-fx-text-fill: transparent;
 	-fx-border-color: transparent;

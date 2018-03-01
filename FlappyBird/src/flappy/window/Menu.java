@@ -47,13 +47,7 @@ public class Menu extends Background {
 
 	@FXML
 	void onePlayerButtonAction(ActionEvent event) {
-		SelectCharacter seleccion;
-		try {
-			seleccion = new SelectCharacter();
-			FlappyApp.irA(seleccion);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FlappyApp.irA(FlappyApp.seleccion);
 	}
 
 	@FXML

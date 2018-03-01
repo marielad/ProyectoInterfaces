@@ -6,9 +6,9 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -27,38 +27,41 @@ public class Tube extends Group {
 	private double diferencia;
 	private DoubleProperty posicionHueco;
 	
-	Rectangle collisionsTubeUp, collisionsTubeDown;
-	
-	Sprite tubeUp, tubeDown;
-	
+	private Sprite topTube, bottomTube;
+		
 	public Tube(double screenWidth, double screenHeight, boolean animate, boolean rotate) {
 
 		posicionHueco = new SimpleDoubleProperty(this, "posicionHueco");
 		posicionHueco.set(Math.random() * (screenHeight / 3) + 200);
 		diferencia = posicionHueco.get();		
-		
-		tubeUp = new Sprite(TUBO_UP);
-		// Tamaño del hueco entre tubeUp y tubeDown
-		tubeUp.setFitWidth(75);
-		tubeUp.setFitHeight(400);
-		tubeUp.setX(screenWidth);
-		tubeUp.setY(diferencia - screenHeight * 1.2);
 
-		tubeDown = new Sprite(TUBO_DOWN);
-		tubeDown.setFitWidth(75);
-		tubeDown.setFitHeight(400);
-		tubeDown.setX(screenWidth);
-		tubeDown.setY(diferencia);
+		topTube = new Sprite(TUBO_UP);
+		topTube.setFitWidth(75);
+		topTube.setFitHeight(400);
+		topTube.setX(screenWidth);
+		topTube.setY(diferencia - screenHeight * 1.2);
+
+		bottomTube = new Sprite(TUBO_DOWN);
+		bottomTube.setFitWidth(75);
+		bottomTube.setFitHeight(400);
+		bottomTube.setX(screenWidth);
+		bottomTube.setY(diferencia);
 		
-		collisionsTubeUp = new Rectangle();
-		collisionsTubeUp.widthProperty().bind(tubeUp.fitWidthProperty());
-		collisionsTubeUp.heightProperty().bind(tubeUp.fitHeightProperty());
-		collisionsTubeUp.yProperty().bind(posicionHueco);
-		
-		collisionsTubeDown = new Rectangle();
-		collisionsTubeDown.widthProperty().bind(tubeDown.fitWidthProperty());
-		collisionsTubeDown.heightProperty().bind(tubeDown.fitHeightProperty());
-		collisionsTubeDown.yProperty().bind(posicionHueco.add(120).add(tubeUp.fitHeightProperty()));
+		Rectangle topTubeShape = new Rectangle();
+		topTubeShape.widthProperty().bind(topTube.fitWidthProperty());
+		topTubeShape.heightProperty().bind(topTube.fitHeightProperty());
+		topTubeShape.xProperty().bind(topTube.xProperty());
+		topTubeShape.yProperty().bind(topTube.yProperty());
+		topTubeShape.setVisible(false);
+		topTube.setShape(topTubeShape);
+
+		Rectangle bottomTubeShape = new Rectangle();
+		bottomTubeShape.widthProperty().bind(bottomTube.fitWidthProperty());
+		bottomTubeShape.heightProperty().bind(bottomTube.fitHeightProperty());
+		bottomTubeShape.xProperty().bind(bottomTube.xProperty());
+		bottomTubeShape.yProperty().bind(bottomTube.yProperty());
+		bottomTubeShape.setVisible(false);
+		bottomTube.setShape(bottomTubeShape);
 
 		if (rotate) {
 			setRotationAxis(Rotate.Z_AXIS);
@@ -81,8 +84,9 @@ public class Tube extends Group {
 			animacion = new TranslateTransition();
 		}
 
-		getChildren().addAll(tubeUp, tubeDown);
+		getChildren().addAll(topTube, bottomTube, topTube.getShape(), bottomTube.getShape());
 	}
+	
 	public void play() {
 		animacion.play();
 	}
@@ -95,12 +99,8 @@ public class Tube extends Group {
 		animacion.stop();
 	}
 	
-	public Rectangle getCollisionsTubeUp() {
-		return collisionsTubeUp;
-	}
-	
-	public Bounds getCollisionsTubeDown() {
-		return collisionsTubeDown.getLayoutBounds();
+	public Shape getShape() {
+		return Shape.union(topTube.getShape(), bottomTube.getShape());
 	}
 	
 }

@@ -7,6 +7,7 @@ import flappy.window.Game;
 import flappy.window.HighScore;
 import flappy.window.Menu;
 import flappy.window.Options;
+import flappy.window.SelectCharacter;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ public class FlappyApp extends Application {
 	public static Game juego;
 	public static HighScore mejores;
 	public static Options opciones;
+	public static SelectCharacter seleccion;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -36,6 +38,7 @@ public class FlappyApp extends Application {
 		juego = new Game();
 		mejores = new HighScore();
 		opciones = new Options();
+		seleccion = new SelectCharacter();
 
 		scene = new Scene(menu, ANCHO, ALTO);
 		scene.getStylesheets().add(getClass().getResource("/flappy/style/style.css").toExternalForm());

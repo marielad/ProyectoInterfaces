@@ -11,19 +11,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <ImageView pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/flappySelectCharacter.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="20.0" top="50.0" />
-               </VBox.margin>
-            </ImageView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousButtonAction">

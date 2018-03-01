@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="paneNubes" />
       <BorderPane fx:id="paneButtons">
@@ -46,7 +46,7 @@
             </VBox>
          </top>
          <center>
-            <TextArea fx:id="acercaDeText" editable="false" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="acercaDeText" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
