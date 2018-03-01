@@ -172,17 +172,16 @@ public class Game extends Background {
 			}
 		}
 		
-		checkCollision();
+		checkCollisions();
 	}
 
-	public void checkCollision() {
+	public void checkCollisions() {
 		for (Node node : tuberias.getChildren()) {
 			
 			if (node instanceof Tube) { 
 				Tube tuberia = (Tube) node;
 				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
-				if (intersection.getBoundsInLocal().getWidth() != -1) {
-					System.out.println("zasca del pajarito!!!");
+				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
 					gameOver();
 				}
 				
