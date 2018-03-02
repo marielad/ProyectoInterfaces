@@ -108,7 +108,7 @@
 	-fx-font-weight: bold;
 }
 
-#pausaLabel, #playerLabel {
+#pausaLabel, #playerLabel,  #playerArribaLabel {
 	-fx-font-size: 25.0pt;
 }
 

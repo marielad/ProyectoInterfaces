@@ -11,6 +11,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Shape;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ *
+ */
 public class Sprite extends ImageView {
 
 	private ReadOnlyIntegerWrapper count;

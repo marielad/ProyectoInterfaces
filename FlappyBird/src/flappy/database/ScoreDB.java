@@ -10,11 +10,20 @@ import org.hsqldb.Server;
 import org.hsqldb.persist.HsqlProperties;
 import org.hsqldb.server.ServerAcl.AclFormatException;
 
+/**
+ * Clase que configura la construcción de la base de datos embebida
+ * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
+ *
+ */
 public class ScoreDB {
 
 	Connection conn = null;
 	Statement stmt;
-
+	
+	/**
+	 * Constructor de la base de datos HSLQDB:
+	 * Creamos una tabla con los campos Nombre y Puntos
+	 */
 	public ScoreDB() {
 
 		HsqlProperties hsqlProperties = new HsqlProperties();
@@ -55,10 +64,17 @@ public class ScoreDB {
 
 	}
 
+	/**
+	 * Recuperamos la conexión SQL
+	 * @return conn
+	 */
 	public Connection getConexion() {
 		return conn;
 	}
 
+	/**
+	 * closeConexion() sirve para cerrar la conexion SQL
+	 */
 	public void closeConexion() {
 
 		try {

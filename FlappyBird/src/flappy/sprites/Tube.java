@@ -12,6 +12,11 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ *
+ */
 public class Tube extends Group {
 
 	private static final String TUBO_UP = "/flappy/resources/flappyTubeUp.png";
@@ -27,8 +32,15 @@ public class Tube extends Group {
 	private double diferencia;
 	private DoubleProperty posicionHueco;
 	
-	private Sprite topTube, bottomTube;
+	private Sprite topTube, bottomTube, middleTube;
 		
+	/**
+	 * Constructor
+	 * @param screenWidth Le pasamos el ancho de la pantalla
+	 * @param screenHeight Le pasamos el alto de la pantalla
+	 * @param animate Es un boolean que indica si se quiere animar el tubo verticalmente
+	 * @param rotate Es un boolean que indica si se quiere rotar el tubo
+	 */
 	public Tube(double screenWidth, double screenHeight, boolean animate, boolean rotate) {
 
 		posicionHueco = new SimpleDoubleProperty(this, "posicionHueco");
@@ -47,6 +59,12 @@ public class Tube extends Group {
 		bottomTube.setX(screenWidth);
 		bottomTube.setY(diferencia);
 		
+		middleTube = new Sprite(TUBO_DOWN);
+	    middleTube.setFitWidth(1);
+	    middleTube.setFitHeight(425);
+	    middleTube.setX(screenWidth+37.5);
+	    middleTube.setY(0);
+		
 		Rectangle topTubeShape = new Rectangle();
 		topTubeShape.widthProperty().bind(topTube.fitWidthProperty());
 		topTubeShape.heightProperty().bind(topTube.fitHeightProperty());
@@ -62,6 +80,15 @@ public class Tube extends Group {
 		bottomTubeShape.yProperty().bind(bottomTube.yProperty());
 		bottomTubeShape.setVisible(false);
 		bottomTube.setShape(bottomTubeShape);
+		
+
+	    Rectangle middleTubeShape = new Rectangle();
+	    middleTubeShape.widthProperty().bind(middleTube.fitWidthProperty());
+	    middleTubeShape.heightProperty().bind(middleTube.fitHeightProperty());
+	    middleTubeShape.xProperty().bind(middleTube.xProperty());
+	    middleTubeShape.yProperty().bind(middleTube.yProperty());
+	    middleTubeShape.setVisible(true);
+	    middleTube.setShape(middleTubeShape);
 
 		if (rotate) {
 			setRotationAxis(Rotate.Z_AXIS);
@@ -84,23 +111,44 @@ public class Tube extends Group {
 			animacion = new TranslateTransition();
 		}
 
-		getChildren().addAll(topTube, bottomTube, topTube.getShape(), bottomTube.getShape());
+		getChildren().addAll(topTube, bottomTube, middleTube, topTube.getShape(), bottomTube.getShape(), middleTube.getShape());
 	}
 	
+	/**
+	 * play() es un método que inicia las transiciones de las tuberías
+	 */
 	public void play() {
 		animacion.play();
 	}
 
+	/**
+	 * pause() es un método que pausa las transiciones de las tuberías
+	 */
 	public void pause() {
 		animacion.pause();
 	}
 	
+	/**
+	 * stop() es un método que para las transiciones de las tuberías
+	 */
 	public void stop() {
 		animacion.stop();
 	}
 	
+	/**
+	 * Método que devuelve el Shape de los tubos
+	 * @return Shape.union(topTube.getShape(), bottomTube.getShape());
+	 */
 	public Shape getShape() {
 		return Shape.union(topTube.getShape(), bottomTube.getShape());
 	}
 	
+	/**
+	 * Método que devuelve el Shape del  tubo auxiliar que se utiliza para las puntuaciones
+	 * @return middleTube.getShape();
+	 */
+	public Shape getMiddleShape() {
+	    return middleTube.getShape();
+	  }
+
 }

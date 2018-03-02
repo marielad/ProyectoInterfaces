@@ -11,6 +11,10 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * 
+ *@author Jorge Delgado, Mariela Dorta
+ */
 public abstract class Background extends Screen {
 	
 	static final Clouds nubes = new Clouds(15);

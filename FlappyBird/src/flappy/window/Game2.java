@@ -28,22 +28,22 @@ import javafx.scene.shape.Shape;
 
 /**
  * 
- * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ * @author Jorge Delgado, Mariela Dorta
  *
  */
-public class Game extends Background {
+public class Game2 extends Background {
 
 	public static final int POSICIONX_PAJARITO = 200;
 	public static final int POSICIONY_PAJARITO = 75;
 	public static final int POSICIONZ_PAJARITO = 75;
 	public static final int ESPACIO_ENTRE_TUBOS = 200;
 
-	private Bird pajarito;
+	private Bird pajarito, pajarito2;
 	private Tubes tuberias;
-	private Score puntuacion;
+	private Score puntuacion, puntuacion2;
 
 	private Boolean pausado = false;
-	private StringProperty puntuacionTexto, nombreTexto;
+	private StringProperty puntuacionTexto, puntuacionTexto2, nombreTexto, nombreTexto2;
 	
 	@FXML
     private VBox buttonsBox, overBox;
@@ -57,7 +57,7 @@ public class Game extends Background {
 	@FXML
 	private Pane paneNubes, paneJuego, panePuntuacion;
 
-	public Game() throws IOException {
+	public Game2() throws IOException {
 		super("/flappy/view/GameView.fxml");
 	}
 
@@ -82,9 +82,14 @@ public class Game extends Background {
 				buttonsBox.setVisible(true);
 			}
 		}
-		if (e.getCode().equals(KeyCode.SPACE) || e.getCode().equals(KeyCode.UP)) {
+		if (e.getCode().equals(KeyCode.SPACE)) {
 			if (!pajarito.isPausado()) {
 				pajarito.jump();
+			}
+		}
+		if (e.getCode().equals(KeyCode.UP)) {
+			if (!pajarito2.isPausado()) {
+				pajarito2.jump();
 			}
 		}
 	}
@@ -121,37 +126,53 @@ public class Game extends Background {
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
-		pajarito = OnePlayer.pajarito;
+		pajarito = TwoPlayer.pajarito;
 		pajarito.setTranslateX(100);
-		pajarito.setTranslateY(200);  
+		pajarito.setTranslateY(200);
+		
+		pajarito2 = TwoPlayer.pajaritoArriba;
+		pajarito2.setTranslateX(100);
+		pajarito2.setTranslateY(250);
 		
 		puntuacion = new Score();
 		puntuacion.setTranslateX(873);
 		puntuacion.setTranslateY(5);
-		nombreTexto = OnePlayer.nombre;		
+		nombreTexto = TwoPlayer.nombre;		
 		puntuacionTexto = new SimpleStringProperty(this, "puntuacionTexto", "SCORE:");
 		panePuntuacion.getChildren().add(puntuacion);
 		puntuacion.getPuntuacion().textProperty().bind(puntuacionTexto.concat(pajarito.getScore().asString()));
 		
+		puntuacion2 = new Score();
+		puntuacion2.setTranslateX(5);
+		puntuacion2.setTranslateY(5);
+		nombreTexto2 = TwoPlayer.nombreArriba;		
+		puntuacionTexto2 = new SimpleStringProperty(this, "puntuacionTexto2", "SCORE:");
+		panePuntuacion.getChildren().add(puntuacion2);
+		puntuacion2.getPuntuacion().textProperty().bind(puntuacionTexto2.concat(pajarito2.getScore().asString()));
+		
 		tuberias = new Tubes(FlappyApp.ANCHO, FlappyApp.ALTO, 7);
-		paneJuego.getChildren().addAll(tuberias, pajarito);
+		paneJuego.getChildren().addAll(tuberias, pajarito, pajarito2);
 		
 		tuberias.play();
 		musicaJuego.play();
 		pajarito.start();
+		pajarito2.start();
 	}
 	
 	@Override
 	public void stop() {
 		super.stop();
 		pajarito.setScore(0);
+		pajarito2.setScore(0);
 		musicaJuego.stop();
 		pajarito.stop();
 		tuberias.stop();
 		paneJuego.getChildren().remove(tuberias);
 		paneJuego.getChildren().remove(pajarito);
+		paneJuego.getChildren().remove(pajarito2);
 		paneNubes.getChildren().remove(nubes);
 		panePuntuacion.getChildren().remove(puntuacion);
+		panePuntuacion.getChildren().remove(puntuacion2);
 		pausado = false;
 	}
 	
@@ -210,10 +231,25 @@ public class Game extends Background {
 
 			Ellipse shapeAux = new Ellipse();
 			
+			Ellipse shapeAux2 = new Ellipse();
+			
 			if (node instanceof Tube) { 
 				Tube tuberia = (Tube) node;
 				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
+				Shape intersection2 = Shape.intersect(tuberia.getShape(), pajarito2.getShape());
 				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
+					if (!pausado) {
+						pajarito.stop();
+					}
+				}
+				
+				if (pajarito2.getTranslateY() >= getHeight() || pajarito2.getTranslateY() <= 0 || intersection2.getBoundsInLocal().getWidth() != -1) {
+					if (!pausado) {
+						pajarito2.stop();
+					}
+				}
+				
+				if (pajarito.isPausado() && pajarito2.isPausado()) {
 					if (!pausado) {
 						gameOver();
 					}
@@ -224,18 +260,30 @@ public class Game extends Background {
 		        shapeAux.rotateProperty().bind(pajarito.rotateProperty());
 		        shapeAux.setRadiusX(1);
 		        shapeAux.setRadiusY(1);
-		        shapeAux.setVisible(true);
+		        shapeAux.setVisible(false);
 		        
-		        Shape intersectionTwo = Shape.intersect(tuberia.getMiddleShape(), shapeAux);
+				shapeAux2.centerXProperty().bind(pajarito2.translateXProperty().add(pajarito2.widthProperty().divide(2)));
+				shapeAux2.centerYProperty().bind(pajarito2.translateYProperty().add(pajarito2.heightProperty().divide(2)));
+				shapeAux2.rotateProperty().bind(pajarito2.rotateProperty());
+				shapeAux2.setRadiusX(1);
+				shapeAux2.setRadiusY(1);
+				shapeAux2.setVisible(false);
+				
+				Shape intersectionTwo = Shape.intersect(tuberia.getMiddleShape(), shapeAux);
 		        if (intersectionTwo.getBoundsInLocal().getWidth() != -1) {
 		          pajarito.setScore(pajarito.getScore().get()+1);
 		        }
-
+		        Shape intersectionThree = Shape.intersect(tuberia.getMiddleShape(), shapeAux2);
+		        if (intersectionThree.getBoundsInLocal().getWidth() != -1) {
+		          pajarito2.setScore(pajarito2.getScore().get()+1);
+		        }
 			}
 		}
 	}
 	
 	private void gameOver() {
+		pause();
+		
 		try {
 			ScoreDB conn = new ScoreDB();
 			
@@ -246,16 +294,23 @@ public class Game extends Background {
 			pstmt.execute();
 			pstmt.close();
 			
-			conn.closeConexion();
+			PreparedStatement pstmt2 =  conn.getConexion().prepareStatement("INSERT INTO Puntuaciones VALUES (DEFAULT, ?, ?)");
+			pstmt2.setString(1, nombreTexto2.get());
+			pstmt2.setInt(2, pajarito2.getScore().get());
 			
+			pstmt2.execute();
+			pstmt2.close();
+			
+			conn.closeConexion();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		pause();
+		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString()).concat("  |  ")
+				.concat(nombreTexto2.concat(" ").concat(puntuacionTexto2.concat(pajarito2.getScore().asString()
+				)))));
 		
-		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString())));
 		overBox.setVisible(true);
 	}
 	

@@ -12,7 +12,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
-
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class Bird extends Sprite {
 	
 	private static final String PAJARITO = "/flappy/resources/redBird.png";
@@ -57,7 +61,6 @@ public class Bird extends Sprite {
  		rotarPajarito.setNode(this);
  		rotarPajarito.setCycleCount(1);
  		
- 		//He quitado 1 seg de retardo en la caida del pajaro
  		caer = new TranslateTransition();
  		caer.setNode(this);
  		caer.setCycleCount(TranslateTransition.INDEFINITE);
@@ -76,10 +79,16 @@ public class Bird extends Sprite {
 
 	}
  	
+	/**
+	 * Constructor por defecto
+	 */
  	public Bird() {
  		this(PAJARITO);
  	}
 	
+ 	/**
+ 	 * jump() es un método que se utiliza para hacer que el pajarito salte
+ 	 */
 	public void jump() {
         caer.stop();
         rotarPajarito.stop();
@@ -93,20 +102,34 @@ public class Bird extends Sprite {
         saltando = true;
 	}
  	
+	/**
+	 * isSaltando es un método para saber si el pajarito está saltando o no
+	 * @return es un Boolean 
+	 */
  	public boolean isSaltando() {
 		return saltando;
 	}
  	
+ 	/**
+ 	 * isPausado() es un método que dice si el pajarito esta pausado o no
+ 	 * @return devuelve un Boolean
+ 	 */
  	public boolean isPausado() {
 		return pausado;
 	}
  	
+	/**
+	 *  start() es un método que inicializa las transiciones del pajarito	
+	 */
  	public void start() {
  		caer.play();
  		aleteo.playFromStart();
  		pausado = false;
  	}
  	
+ 	/**
+	 *  pause() es un método que pausa las transiciones del pajarito	
+	 */
  	public void pause() {
  		caer.pause();
  		saltar.pause();
@@ -114,25 +137,43 @@ public class Bird extends Sprite {
  		pausado = true;
  	}
  	
+ 	/**
+	 *  resume() es un método que reanuda las transiciones del pajarito	
+	 */
  	public void resume() {
  		caer.play();
  		aleteo.play();
  		pausado = false;
  	}
  	
+ 	/**
+	 *  stop() es un método que para las transiciones del pajarito	
+	 */
  	public void stop() {
  		caer.stop();
  		aleteo.stop();
+ 		pausado = true;
  	}
  	
+ 	/**
+ 	 * aleteo() es un método que inicializa la transición infinita del pajarito volando
+ 	 */
  	public void aleteo() {
  		aleteo.playFromStart();
  	}
 
+ 	/**
+ 	 * getScore es un getter del IntegerProperty score
+ 	 * @return score
+ 	 */
 	public final IntegerProperty getScore() {
 		return score;
 	}
 
+	/**
+	 * setScore es un setter del IntegerProperty score
+	 * @param score
+	 */
 	public final void setScore(final int score) {
 		Bird.score.set(score);
 	}

@@ -12,6 +12,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
+ *
+ */
 public class About extends Background {
 
 	@FXML

@@ -16,6 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class OnePlayer extends Background {
 
 	private static final String REDBIRD = "/flappy/resources/redBird.png";

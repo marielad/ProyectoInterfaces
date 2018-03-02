@@ -14,19 +14,19 @@
 <fx:root type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+      <VBox alignment="CENTER">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/flappySelectCharacter.png" />
                </image>
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </ImageView>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="previousArribaButton" mnemonicParsing="false" onAction="#previousArribaButtonAction">
+                  <Button fx:id="previousArribaButton" alignment="CENTER" mnemonicParsing="false" onAction="#previousArribaButtonAction">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -60,7 +60,7 @@
                   </Button>
                   <VBox alignment="CENTER">
                      <children>
-                        <Label fx:id="playerLabel1" text="Player name:">
+                        <Label fx:id="playerArribaLabel" text="Player name:">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -69,6 +69,9 @@
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER">
                <children>
@@ -115,12 +118,15 @@
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER" spacing="30.0">
                <children>
                   <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back">
                      <HBox.margin>
-                        <Insets bottom="10.0" right="50.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="playButton" mnemonicParsing="false" onAction="#playButtonAction" text="Play">
@@ -130,7 +136,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
          </children>

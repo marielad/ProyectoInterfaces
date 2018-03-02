@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import flappy.window.About;
 import flappy.window.Game;
+import flappy.window.Game2;
 import flappy.window.HighScore;
 import flappy.window.Menu;
 import flappy.window.Options;
@@ -12,6 +13,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+/**
+ * Main
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 
 public class FlappyApp extends Application {
 	
@@ -24,6 +31,7 @@ public class FlappyApp extends Application {
 	public static Menu menu;
 	public static About acercaDe;
 	public static Game juego;
+	public static Game2 juego2;
 	public static HighScore mejores;
 	public static Options opciones;
 
@@ -34,6 +42,7 @@ public class FlappyApp extends Application {
 		menu = new Menu();
 		acercaDe = new About();
 		juego = new Game();
+		juego2 = new Game2();
 		mejores = new HighScore();
 		opciones = new Options();
 
@@ -55,6 +64,10 @@ public class FlappyApp extends Application {
 		return primaryStage;
 	}
 	
+	/**
+	 * Esta función sirve para cambiar las vistas
+	 * @param root le pasamos una clase hija de Screen
+	 */
 	public static void irA(Parent root) {
 		scene.setRoot(root);
 	}

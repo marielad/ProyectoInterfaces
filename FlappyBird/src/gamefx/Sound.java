@@ -4,6 +4,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ *
+ */
 public class Sound {
 	
 	private MediaPlayer player;

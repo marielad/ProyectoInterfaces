@@ -19,6 +19,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
+ *
+ */
 public class HighScore extends Background {
 
 	@FXML
@@ -42,11 +47,7 @@ public class HighScore extends Background {
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		reportButton.setOnAction(e -> onReportButtonAction(e));
 		
-		try {
-			listScore.setItems(cargarDatos());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		updateScore();
 	}
 	
 	public ObservableList<String> cargarDatos() throws Exception {
@@ -78,6 +79,14 @@ public class HighScore extends Background {
 		}
 		conn.closeConexion();
 		return datos;
+	}
+	
+	private void updateScore() {
+		try {
+			listScore.setItems(cargarDatos());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

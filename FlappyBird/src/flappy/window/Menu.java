@@ -11,6 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class Menu extends Background {
 	
 	@FXML
@@ -69,7 +74,13 @@ public class Menu extends Background {
 
 	@FXML
 	void highScoreButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.mejores);
+		HighScore highScore;
+		try {
+			highScore = new HighScore();
+			FlappyApp.irA(highScore);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

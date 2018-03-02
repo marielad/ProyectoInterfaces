@@ -11,6 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class Options extends Background {
 
 	@FXML

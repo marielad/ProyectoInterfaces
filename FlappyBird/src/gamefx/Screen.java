@@ -9,6 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ *
+ */
 public abstract class Screen extends StackPane implements Initializable {
 
 	private AnimationTimer gameLoop;

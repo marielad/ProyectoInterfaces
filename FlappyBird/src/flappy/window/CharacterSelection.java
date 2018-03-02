@@ -14,6 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class CharacterSelection extends Background{
 
 	private static final String REDBIRD = "/flappy/resources/redBird.png";

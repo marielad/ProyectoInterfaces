@@ -16,6 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
 public class TwoPlayer extends Background {
 
 	private static final String REDBIRD = "/flappy/resources/redBird.png";
@@ -167,7 +172,7 @@ public class TwoPlayer extends Background {
 
 	@FXML
 	void playButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.juego);
+		FlappyApp.irA(FlappyApp.juego2);
 		playerText.setText(playerText.getText().toUpperCase());
 		nombre.bind(playerText.textProperty());
 		playerArribaText.setText(playerArribaText.getText().toUpperCase());

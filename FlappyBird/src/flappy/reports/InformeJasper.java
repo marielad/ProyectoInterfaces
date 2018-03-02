@@ -18,8 +18,16 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+/**
+ * Clase que crea el informe de Jasper
+ * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
+ *
+ */
 public class InformeJasper {
 
+	/**
+	 * Constructor de Jasper 
+	 */
 	public InformeJasper() {
 		try {
 			List<Partida> datos = new ArrayList<>();
@@ -40,6 +48,11 @@ public class InformeJasper {
 			}
 	}
 
+	/**
+	 * cargarDatos() hace la consulta que guardaremos en el JasperReport
+	 * @return los datos que utilizaremos para rellenar el JasperReports
+	 * @throws Exception
+	 */
 	public static List<Partida> cargarDatos() throws Exception {
 		List<Partida> datos = new ArrayList<>();
 
@@ -63,6 +76,9 @@ public class InformeJasper {
 		return datos;
 	}
 	
+	/**
+	 * show() se utiliza para abrir un pdf del JasperReport en el escritorio
+	 */
 	public void show() {
 		try {
 			Desktop.getDesktop().open(new File("report\\Informe.pdf"));
