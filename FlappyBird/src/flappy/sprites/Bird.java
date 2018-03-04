@@ -1,6 +1,8 @@
 package flappy.sprites;
 
 import flappy.app.FlappyApp;
+import flappy.sound.Sounds;
+import gamefx.Sound;
 import gamefx.Sprite;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -27,6 +29,8 @@ public class Bird extends Sprite {
  	private RotateTransition rotarPajarito;
  	private Timeline aleteo;
  	
+	private Sound jumpSound = Sounds.JUMP;
+	
  	private Ellipse shape;
  	
  	//Pruebas Jorge
@@ -54,7 +58,7 @@ public class Bird extends Sprite {
             rotarPajarito.setToAngle(20);
             rotarPajarito.stop();
             rotarPajarito.play();
-            saltando = false;
+            saltando = false;  
             caer.play();
         });
         
@@ -91,6 +95,7 @@ public class Bird extends Sprite {
  	 * jump() es un m�todo que se utiliza para hacer que el pajarito salte
  	 */
 	public void jump() {
+		jumpSound.stop();
         caer.stop();
         rotarPajarito.stop();
         saltar.stop();
@@ -98,8 +103,9 @@ public class Bird extends Sprite {
  		rotarPajarito.setDuration(Duration.millis(50));
         rotarPajarito.setToAngle(-20);
         rotarPajarito.play();
-            
+           
         saltar.play();
+		jumpSound.play();
         saltando = true;
 	}
  	

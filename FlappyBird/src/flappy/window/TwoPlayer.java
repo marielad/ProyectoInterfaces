@@ -172,17 +172,17 @@ public class TwoPlayer extends Background {
 
 	@FXML
 	void playButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.juegoTwo);
+		FlappyApp.goTo(FlappyApp.juegoTwo);
 		playerText.setText(playerText.getText().toUpperCase());
 		nombre.bind(playerText.textProperty());
 		playerArribaText.setText(playerArribaText.getText().toUpperCase());
 		nombreArriba.bind(playerArribaText.textProperty());
-		musicaMenu.stop();
+		menuMusic.stop();
 	}
 	
 	@FXML
 	void backButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.menu);
+		FlappyApp.goTo(FlappyApp.menu);
 	}
 
 }

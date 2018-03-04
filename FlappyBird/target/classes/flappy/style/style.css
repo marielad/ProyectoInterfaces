@@ -1,0 +1,119 @@
+@font-face {
+    src: url('Flappy-Bird.ttf');
+}
+
+.root {
+	-fx-background-color: deepskyblue;
+}
+
+.text-field {
+	-fx-font-family: 'Consolas';
+	-fx-font-size: 15.0pt;
+	-fx-border-color: black;
+	-fx-text-fill: darkred;
+	-fx-background-color: khaki;
+}
+
+.text-field:focused {
+	-fx-text-fill: khaki;
+	-fx-background-color: darkred;
+}
+
+.button {
+	-fx-font-family: 'Flappy Bird';
+	-fx-font-size: 20.0pt;
+	-fx-border-color: black;
+	-fx-text-fill: darkred;
+	-fx-background-color: khaki;
+}
+
+.button:focused {
+	-fx-border-color: black;
+	-fx-text-fill: khaki;
+	-fx-background-color: darkred;
+}
+
+.button:armed {
+	-fx-border-color: black;
+	-fx-text-fill: khaki;
+	-fx-background-color: forestgreen;
+}
+
+.label {
+	-fx-font-family: 'Flappy Bird';
+	-fx-font-size: 20.0pt;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+}
+.text-area .text {
+    -fx-text-alignment: center;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+#acercaDeText {
+	-fx-font-family: 'Consolas';
+	-fx-font-size: 9.5pt;
+	-fx-font-weight: bold;
+}
+
+#listScore {
+	-fx-font-family: 'Consolas';
+	-fx-font-weight: bold;
+	-fx-background-color: transparent;
+}
+
+.list-cell { 
+	-fx-text-fill: black; -fx-alignment: center;
+}
+
+.list-cell:odd { 
+	-fx-background-color: transparent
+}
+
+.list-cell:even { 
+	-fx-background-color: transparent
+}
+
+.list-cell:filled:hover { 
+	-fx-background-color: transparent
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0px;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-padding: 0px;
+}
+
+#overLabel{
+	-fx-font-size: 30pt;
+	-fx-font-weight: bold;
+}
+
+#pausaLabel, #playerLabel,  #playerArribaLabel {
+	-fx-font-size: 25.0pt;
+}
+
+#reportButton, #volverButton, #muteButton, #previousButton, #nextButton, #previousArribaButton, #nextArribaButton  {
+	-fx-background-color: transparent;
+	-fx-text-fill: transparent;
+	-fx-border-color: transparent;
+}

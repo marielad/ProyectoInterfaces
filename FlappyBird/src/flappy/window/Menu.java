@@ -40,7 +40,7 @@ public class Menu extends Background {
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
-		musicaMenu.play();
+		menuMusic.playIndefinite();
 		Platform.runLater(() -> onePlayerButton.requestFocus());
 	}
 
@@ -55,7 +55,7 @@ public class Menu extends Background {
 		OnePlayer seleccion;
 		try {
 			seleccion = new OnePlayer();
-			FlappyApp.irA(seleccion);
+			FlappyApp.goTo(seleccion);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +66,7 @@ public class Menu extends Background {
 		TwoPlayer seleccion;
 		try {
 			seleccion = new TwoPlayer();
-			FlappyApp.irA(seleccion);
+			FlappyApp.goTo(seleccion);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ public class Menu extends Background {
 		HighScore highScore;
 		try {
 			highScore = new HighScore();
-			FlappyApp.irA(highScore);
+			FlappyApp.goTo(highScore);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,12 +85,12 @@ public class Menu extends Background {
 
 	@FXML
 	void optionsButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.opciones);
+		FlappyApp.goTo(FlappyApp.opciones);
 	}
 
 	@FXML
 	void aboutButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.acercaDe);
+		FlappyApp.goTo(FlappyApp.acercaDe);
 	}
 
 	@FXML

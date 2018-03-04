@@ -5,10 +5,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
+import flappy.sound.Sounds;
 import flappy.sprites.Score;
 import flappy.sprites.Bird;
+import flappy.sprites.Explosion;
 import flappy.sprites.Tube;
 import flappy.sprites.Tubes;
+import gamefx.Sound;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -37,10 +40,14 @@ public class Game extends Background {
 	public static final int POSICIONZ_PAJARITO = 75;
 	public static final int ESPACIO_ENTRE_TUBOS = 200;
 
+	private Sound pointSound = Sounds.POINT;
+	
 	private Bird pajarito;
+	private Explosion explosion;
 	private Tubes tuberias;
 	private Score puntuacion;
-
+	private Ellipse shapeAux = new Ellipse();
+	
 	private Boolean pausado = false;
 	private StringProperty puntuacionTexto, nombreTexto;
 	
@@ -89,10 +96,10 @@ public class Game extends Background {
 			}
 		}
 		if (e.getCode().equals(KeyCode.M)) {
-			if (!musicaJuego.isMuted()) {
-				musicaJuego.mute(true);
+			if (!gameMusic.isMuted()) {
+				gameMusic.mute(true);
 			} else {
-				musicaJuego.mute(false);
+				gameMusic.mute(false);
 			}
 		}
 	}
@@ -101,17 +108,17 @@ public class Game extends Background {
     void exitButtonAction(ActionEvent event) {
     	resume();
 		stop();
-		FlappyApp.irA(FlappyApp.menu);
+		FlappyApp.goTo(FlappyApp.menu);
 		buttonsBox.setVisible(false);
 		overBox.setVisible(false);
     }
 
 	@FXML
     void muteGameButtonAction(ActionEvent event) {
-		if (!musicaJuego.isMuted()) {
-			musicaJuego.mute(true);
+		if (!gameMusic.isMuted()) {
+			gameMusic.mute(true);
 		}else {
-			musicaJuego.mute(false);
+			gameMusic.mute(false);
 		}
     }
 	
@@ -134,6 +141,7 @@ public class Game extends Background {
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
+		
 		pajarito = OnePlayer.pajarito;
 		pajarito.setTranslateX(100);
 		pajarito.setTranslateY(200);  
@@ -150,7 +158,7 @@ public class Game extends Background {
 		paneJuego.getChildren().addAll(tuberias, pajarito);
 		
 		tuberias.play();
-		musicaJuego.play();
+		gameMusic.playIndefinite();
 		pajarito.start();
 	}
 	
@@ -158,7 +166,7 @@ public class Game extends Background {
 	public void stop() {
 		super.stop();
 		pajarito.setScore(0);
-		musicaJuego.stop();
+		gameMusic.stop();
 		pajarito.stop();
 		tuberias.stop();
 		paneJuego.getChildren().remove(tuberias);
@@ -170,7 +178,7 @@ public class Game extends Background {
 	
 	private void pause() {
 		super.stop();
-		musicaJuego.pause();
+		gameMusic.pause();
 		tuberias.pause();
 		pajarito.pause();
 		nubes.pause();
@@ -179,7 +187,7 @@ public class Game extends Background {
 	
 	private void resume() {
 		super.start();
-		musicaJuego.resume();
+		gameMusic.resume();
 		tuberias.play();
 		pajarito.resume();
 		nubes.resume();
@@ -213,42 +221,49 @@ public class Game extends Background {
 			for (Node tuberia : tuberias.getChildren()) {
 				tuberia.setTranslateX(tuberia.getTranslateX() - 3);
 			}
-			
 		}
 		checkCollisions();
 	}
 
 	public void checkCollisions() {
 		for (Node node : tuberias.getChildren()) {
-
-			Ellipse shapeAux = new Ellipse();
 			
+			shapeAux.centerXProperty().bind(pajarito.translateXProperty().add(pajarito.widthProperty().divide(2)));
+	        shapeAux.centerYProperty().bind(pajarito.translateYProperty().add(pajarito.heightProperty().divide(2)));
+	        shapeAux.rotateProperty().bind(pajarito.rotateProperty());
+	        shapeAux.setRadiusX(1);
+	        shapeAux.setRadiusY(1);
+	        shapeAux.setVisible(true);
+	        
 			if (node instanceof Tube) { 
 				Tube tuberia = (Tube) node;
 				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
 				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
 					if (!pausado) {
+						pause();
 						gameOver();
 					}
 				}
 				
-				shapeAux.centerXProperty().bind(pajarito.translateXProperty().add(pajarito.widthProperty().divide(2)));
-		        shapeAux.centerYProperty().bind(pajarito.translateYProperty().add(pajarito.heightProperty().divide(2)));
-		        shapeAux.rotateProperty().bind(pajarito.rotateProperty());
-		        shapeAux.setRadiusX(1);
-		        shapeAux.setRadiusY(1);
-		        shapeAux.setVisible(true);
-		        
 		        Shape intersectionTwo = Shape.intersect(tuberia.getMiddleShape(), shapeAux);
 		        if (intersectionTwo.getBoundsInLocal().getWidth() != -1) {
-		          pajarito.setScore(pajarito.getScore().get()+1);
+		        	pointSound.stop();
+		        	pajarito.setScore(pajarito.getScore().get()+1);
+		        	pointSound.play();
 		        }
 			}
 		}
 	}
 	
 	private void gameOver() {
-		pause();
+		explosion = new Explosion();
+		explosion.setTranslateX(pajarito.getTranslateX()-32);
+		explosion.setTranslateY(pajarito.getTranslateY()-32);
+		
+		paneJuego.getChildren().add(explosion);
+		paneJuego.getChildren().remove(pajarito);
+		explosion.explode();
+		
 		
 		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString())));
 		panePausa.setDisable(true);

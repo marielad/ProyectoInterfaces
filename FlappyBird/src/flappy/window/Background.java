@@ -19,8 +19,8 @@ public abstract class Background extends Screen {
 	
 	static final Clouds nubes = new Clouds(15);
 
-	Sound musicaMenu = Sounds.MENU;
-	Sound musicaJuego = Sounds.JUEGO;
+	Sound menuMusic = Sounds.MENU;
+	Sound gameMusic = Sounds.GAME;
 	
 	public Background(String url) throws IOException {
 		super(url);
@@ -44,15 +44,15 @@ public abstract class Background extends Screen {
 			if(FlappyApp.primaryStage.getScene() != FlappyApp.menu.getScene()
 					&& FlappyApp.primaryStage.getScene() != FlappyApp.juego.getScene()) {
 				stop();
-				FlappyApp.irA(FlappyApp.menu);
+				FlappyApp.goTo(FlappyApp.menu);
 			}
 		}
 		
 		if (e.getCode().equals(KeyCode.M)) {
-			if (!musicaMenu.isMuted()) {
-				musicaMenu.mute(true);
+			if (!menuMusic.isMuted()) {
+				menuMusic.mute(true);
 			} else {
-				musicaMenu.mute(false);
+				menuMusic.mute(false);
 			}
 		}
 	}

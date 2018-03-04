@@ -63,7 +63,7 @@ public class HighScore extends Background {
 	
 	@FXML
 	void volverButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.menu);
+		FlappyApp.goTo(FlappyApp.menu);
 	}
 
 

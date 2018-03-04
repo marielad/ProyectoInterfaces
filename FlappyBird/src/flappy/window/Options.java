@@ -51,18 +51,18 @@ public class Options extends Background {
 	
     @FXML
     void muteButtonAction(ActionEvent event) {
-		if (!musicaMenu.isMuted() || !musicaJuego.isMuted()) {
-			musicaMenu.mute(true);
-			musicaJuego.mute(true);
+		if (!menuMusic.isMuted() || !gameMusic.isMuted()) {
+			menuMusic.mute(true);
+			gameMusic.mute(true);
 		}else {
-			musicaMenu.mute(false);
-			musicaJuego.mute(false);
+			menuMusic.mute(false);
+			gameMusic.mute(false);
 		}
     }
     
 	@FXML
 	void volverButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.menu);
+		FlappyApp.goTo(FlappyApp.menu);
 	}
 
 }

@@ -68,7 +68,7 @@ public class FlappyApp extends Application {
 	 * Esta funci�n sirve para cambiar las vistas
 	 * @param root le pasamos una clase hija de Screen
 	 */
-	public static void irA(Parent root) {
+	public static void goTo(Parent root) {
 		scene.setRoot(root);
 	}
 

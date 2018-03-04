@@ -105,10 +105,10 @@ public class OnePlayer extends Background {
 
 	@FXML
 	void playButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.juego);
+		FlappyApp.goTo(FlappyApp.juego);
 		playerText.setText(playerText.getText().toUpperCase());
 		nombre.bind(playerText.textProperty());
-		musicaMenu.stop();
+		menuMusic.stop();
 	}
 
 	@FXML
@@ -127,7 +127,7 @@ public class OnePlayer extends Background {
 
 	@FXML
 	void backButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.menu);
+		FlappyApp.goTo(FlappyApp.menu);
 	}
 
 }
