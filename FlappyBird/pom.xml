@@ -4,6 +4,7 @@
 	<groupId>FlappyBird</groupId>
 	<artifactId>FlappyBird</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -21,17 +22,18 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
+			
 			<plugin>
 				<groupId>com.zenjava</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>8.6.0</version>
 				<configuration>
 					<appName>FlappyBird</appName>
-					<mainClass>flappy.app</mainClass>
-					<vendor>Mariela</vendor>
+					<mainClass>flappy.app.FlappyApp</mainClass>
+					<vendor>MAJODA</vendor>
 				</configuration>
 				<executions>
 					<execution>

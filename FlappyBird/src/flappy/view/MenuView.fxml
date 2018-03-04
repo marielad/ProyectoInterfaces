@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefHeight="480.0" prefWidth="640.0" type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="480.0" prefWidth="640.0" type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
       <VBox alignment="CENTER" fillWidth="false" spacing="5.0">

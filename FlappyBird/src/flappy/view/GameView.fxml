@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,44 +12,54 @@
    <children>
       <Pane fx:id="paneNubes" />
       <Pane fx:id="paneJuego" />
-      <Pane fx:id="panePuntuacion">
-         <children>
-            <VBox fx:id="buttonsBox" alignment="CENTER" layoutX="455.0" layoutY="115.0">
-               <children>
-                  <Label fx:id="pausaLabel" text="Game paused">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="resumeButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#resumeButtonAction" text="Resume">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="optionsButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#optionsButtonAction" text="Options">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="exitButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
-               </children>
-            </VBox>
-            <VBox fx:id="overBox" alignment="CENTER" layoutX="455.0" layoutY="115.0" spacing="10.0">
+      <Pane fx:id="panePuntuacion" />
+      <BorderPane fx:id="paneOver">
+         <center>
+            <VBox fx:id="overBox" alignment="CENTER">
                <children>
                   <Label fx:id="overLabel" text="Game Over">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="scoreLabel" text="Label" />
-                  <Button fx:id="tryAgainButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#tryAgainButtonAction" text="Try again">
+                  <Label fx:id="scoreLabel" text="Score">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="tryAgainButton" maxWidth="200.0" mnemonicParsing="false" onAction="#tryAgainButtonAction" text="Try again">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="exitButton1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
+                  <Button fx:id="exitButton1" maxWidth="200.0" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
                </children>
             </VBox>
-         </children></Pane>
+         </center>
+      </BorderPane>
+      <BorderPane fx:id="panePausa">
+         <center>
+            <VBox fx:id="buttonsBox" alignment="CENTER">
+               <children>
+                  <Label fx:id="pausaLabel" text="Game paused">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="resumeButton" maxWidth="200.0" mnemonicParsing="false" onAction="#resumeButtonAction" text="Resume">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="muteGameButton" maxWidth="200.0" mnemonicParsing="false" onAction="#muteGameButtonAction" text="Mute">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="exitButton" maxWidth="200.0" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </fx:root>

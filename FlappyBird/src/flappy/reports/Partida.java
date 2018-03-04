@@ -1,7 +1,11 @@
 package flappy.reports;
 
+import java.time.LocalDate;
+
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,14 +18,16 @@ public class Partida {
 	
 	private StringProperty nombre;
 	private IntegerProperty puntos;
+	private ObjectProperty<LocalDate> fecha;
 
-	public Partida(String nombre, int puntos) {
+	public Partida(String nombre, int puntos, LocalDate fecha) {
 		this.nombre = new SimpleStringProperty(this, "nombre", nombre);
 		this.puntos = new SimpleIntegerProperty(this, "puntos", puntos);
+		this.fecha = new SimpleObjectProperty<>(this, "fecha", fecha);
 	}
 	
 	public Partida() {
-		this(null, 0);
+		this(null, 0, null);
 	}
 
 	public StringProperty nombreProperty() {
@@ -52,8 +58,20 @@ public class Partida {
 	public void setPuntos(final int puntos) {
 		this.puntosProperty().set(puntos);
 	}
+
+	public ObjectProperty<LocalDate> fechaProperty() {
+		return this.fecha;
+	}
 	
+
+	public LocalDate getFecha() {
+		return this.fechaProperty().get();
+	}
 	
+
+	public void setFecha(final LocalDate fecha) {
+		this.fechaProperty().set(fecha);
+	}
 	
 	
 }

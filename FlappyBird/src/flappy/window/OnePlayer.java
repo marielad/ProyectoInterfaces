@@ -23,9 +23,9 @@ import javafx.scene.layout.Pane;
  */
 public class OnePlayer extends Background {
 
-	private static final String REDBIRD = "/flappy/resources/redBird.png";
+	private static final String REDBIRD = "/flappy/resources/RedBird.png";
 	private static final String BLUEBIRD = "/flappy/resources/blueBird.png";
-	private static final String YELLOWBIRD = "/flappy/resources/yellowBird.png";
+	private static final String YELLOWBIRD = "/flappy/resources/YellowBird.png";
 	private static final int MAX_SIZE  = 11;
 
 	private List<Bird> pajaritos = new ArrayList<>();

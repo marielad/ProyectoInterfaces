@@ -2,12 +2,9 @@ package flappy.window;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.database.ScoreDB;
 import flappy.sprites.Score;
 import flappy.sprites.Bird;
 import flappy.sprites.Tube;
@@ -21,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
@@ -31,6 +29,7 @@ import javafx.scene.shape.Shape;
  * @author Jorge Delgado, Mariela Dorta, Fran Vargas
  *
  */
+
 public class Game extends Background {
 
 	public static final int POSICIONX_PAJARITO = 200;
@@ -52,10 +51,13 @@ public class Game extends Background {
 	private Label scoreLabel;
 
     @FXML
-    private Button resumeButton, optionsButton, exitButton, tryAgainButton, exitButton1;
+    private Button resumeButton, muteGameButton, exitButton, tryAgainButton, exitButton1;
 
 	@FXML
 	private Pane paneNubes, paneJuego, panePuntuacion;
+	
+	@FXML
+	private BorderPane panePausa, paneOver;
 
 	public Game() throws IOException {
 		super("/flappy/view/GameView.fxml");
@@ -68,10 +70,9 @@ public class Game extends Background {
 		
 		tryAgainButton.setOnAction(e -> tryAgainButtonAction(e));
 		resumeButton.setOnAction(e -> resumeButtonAction(e));
-		optionsButton.setOnAction(e -> optionsButtonAction(e));
+		muteGameButton.setOnAction(e -> muteGameButtonAction(e));
 		exitButton.setOnAction(e -> exitButtonAction(e));
 		exitButton1.setOnAction(e -> exitButtonAction(e));
-
 	}
 	
 	@Override
@@ -87,6 +88,13 @@ public class Game extends Background {
 				pajarito.jump();
 			}
 		}
+		if (e.getCode().equals(KeyCode.M)) {
+			if (!musicaJuego.isMuted()) {
+				musicaJuego.mute(true);
+			} else {
+				musicaJuego.mute(false);
+			}
+		}
 	}
 	
 	@FXML
@@ -99,12 +107,17 @@ public class Game extends Background {
     }
 
 	@FXML
-    void optionsButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.opciones);
+    void muteGameButtonAction(ActionEvent event) {
+		if (!musicaJuego.isMuted()) {
+			musicaJuego.mute(true);
+		}else {
+			musicaJuego.mute(false);
+		}
     }
 	
 	@FXML
     void tryAgainButtonAction(ActionEvent event) {
+		panePausa.setDisable(false);
 		overBox.setVisible(false);
 		resume();
 		stop();
@@ -230,33 +243,19 @@ public class Game extends Background {
 		        if (intersectionTwo.getBoundsInLocal().getWidth() != -1) {
 		          pajarito.setScore(pajarito.getScore().get()+1);
 		        }
-
 			}
 		}
 	}
 	
 	private void gameOver() {
-		try {
-			ScoreDB conn = new ScoreDB();
-			
-			PreparedStatement pstmt =  conn.getConexion().prepareStatement("INSERT INTO Puntuaciones VALUES (DEFAULT, ?, ?)");
-			pstmt.setString(1, nombreTexto.get());
-			pstmt.setInt(2, pajarito.getScore().get());
-			
-			pstmt.execute();
-			pstmt.close();
-			
-			conn.closeConexion();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		pause();
 		
 		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString())));
+		panePausa.setDisable(true);
 		overBox.setVisible(true);
+		
+		FlappyApp.baseDatos.insertarTabla(nombreTexto.get(), pajarito.getScore().get());
+		
 	}
 	
 }

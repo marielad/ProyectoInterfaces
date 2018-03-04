@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
       <BorderPane fx:id="paneButtons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">

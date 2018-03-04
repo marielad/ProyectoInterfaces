@@ -51,7 +51,6 @@ public class Options extends Background {
 	
     @FXML
     void muteButtonAction(ActionEvent event) {
-    	
 		if (!musicaMenu.isMuted() || !musicaJuego.isMuted()) {
 			musicaMenu.mute(true);
 			musicaJuego.mute(true);
@@ -59,7 +58,6 @@ public class Options extends Background {
 			musicaMenu.mute(false);
 			musicaJuego.mute(false);
 		}
-    	
     }
     
 	@FXML

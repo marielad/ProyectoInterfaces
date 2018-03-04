@@ -64,6 +64,7 @@ public class Tube extends Group {
 	    middleTube.setFitHeight(425);
 	    middleTube.setX(screenWidth+37.5);
 	    middleTube.setY(0);
+	    middleTube.setOpacity(0);
 		
 		Rectangle topTubeShape = new Rectangle();
 		topTubeShape.widthProperty().bind(topTube.fitWidthProperty());
@@ -87,7 +88,7 @@ public class Tube extends Group {
 	    middleTubeShape.heightProperty().bind(middleTube.fitHeightProperty());
 	    middleTubeShape.xProperty().bind(middleTube.xProperty());
 	    middleTubeShape.yProperty().bind(middleTube.yProperty());
-	    middleTubeShape.setVisible(true);
+	    middleTubeShape.setVisible(false);
 	    middleTube.setShape(middleTubeShape);
 
 		if (rotate) {
@@ -115,28 +116,28 @@ public class Tube extends Group {
 	}
 	
 	/**
-	 * play() es un método que inicia las transiciones de las tuberías
+	 * play() es un mï¿½todo que inicia las transiciones de las tuberï¿½as
 	 */
 	public void play() {
 		animacion.play();
 	}
 
 	/**
-	 * pause() es un método que pausa las transiciones de las tuberías
+	 * pause() es un mï¿½todo que pausa las transiciones de las tuberï¿½as
 	 */
 	public void pause() {
 		animacion.pause();
 	}
 	
 	/**
-	 * stop() es un método que para las transiciones de las tuberías
+	 * stop() es un mï¿½todo que para las transiciones de las tuberï¿½as
 	 */
 	public void stop() {
 		animacion.stop();
 	}
 	
 	/**
-	 * Método que devuelve el Shape de los tubos
+	 * Mï¿½todo que devuelve el Shape de los tubos
 	 * @return Shape.union(topTube.getShape(), bottomTube.getShape());
 	 */
 	public Shape getShape() {
@@ -144,7 +145,7 @@ public class Tube extends Group {
 	}
 	
 	/**
-	 * Método que devuelve el Shape del  tubo auxiliar que se utiliza para las puntuaciones
+	 * Mï¿½todo que devuelve el Shape del  tubo auxiliar que se utiliza para las puntuaciones
 	 * @return middleTube.getShape();
 	 */
 	public Shape getMiddleShape() {

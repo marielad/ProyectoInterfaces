@@ -2,10 +2,10 @@ package flappy.app;
 
 import java.io.IOException;
 
+import flappy.database.ScoreDB;
 import flappy.window.About;
 import flappy.window.Game;
-import flappy.window.Game2;
-import flappy.window.HighScore;
+import flappy.window.GameTwo;
 import flappy.window.Menu;
 import flappy.window.Options;
 import javafx.application.Application;
@@ -31,9 +31,9 @@ public class FlappyApp extends Application {
 	public static Menu menu;
 	public static About acercaDe;
 	public static Game juego;
-	public static Game2 juego2;
-	public static HighScore mejores;
+	public static GameTwo juegoTwo;
 	public static Options opciones;
+	public static ScoreDB baseDatos;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -42,9 +42,9 @@ public class FlappyApp extends Application {
 		menu = new Menu();
 		acercaDe = new About();
 		juego = new Game();
-		juego2 = new Game2();
-		mejores = new HighScore();
+		juegoTwo = new GameTwo();
 		opciones = new Options();
+		baseDatos = new ScoreDB();
 
 		scene = new Scene(menu, ANCHO, ALTO);
 		scene.getStylesheets().add(getClass().getResource("/flappy/style/style.css").toExternalForm());
@@ -65,7 +65,7 @@ public class FlappyApp extends Application {
 	}
 	
 	/**
-	 * Esta función sirve para cambiar las vistas
+	 * Esta funciï¿½n sirve para cambiar las vistas
 	 * @param root le pasamos una clase hija de Screen
 	 */
 	public static void irA(Parent root) {

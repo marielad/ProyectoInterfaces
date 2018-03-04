@@ -17,24 +17,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ *
  * @author Jorge Delgado, Mariela Dorta
  *
  */
 public class TwoPlayer extends Background {
 
-	private static final String REDBIRD = "/flappy/resources/redBird.png";
-	private static final String BLUEBIRD = "/flappy/resources/blueBird.png";
-	private static final String YELLOWBIRD = "/flappy/resources/yellowBird.png";
 	private static final int MAX_SIZE  = 11;
-
+	private static final String REDBIRD = "/flappy/resources/RedBird.png";
+	private static final String BLUEBIRD = "/flappy/resources/blueBird.png";
+	private static final String YELLOWBIRD = "/flappy/resources/YellowBird.png";
+	
+	private int indice = 0, indiceArriba = 0;
+	public static Bird pajarito, pajaritoArriba;
 	private List<Bird> pajaritos = new ArrayList<>();
 	private List<Bird> pajaritosArriba = new ArrayList<>();
-	public static Bird pajarito, pajaritoArriba;
 	public static StringProperty nombre = new SimpleStringProperty();
 	public static StringProperty nombreArriba = new SimpleStringProperty();
-	private int indice = 0, indiceArriba = 0;
-
+	
 	@FXML
 	private Pane paneNubes;
 
@@ -45,7 +45,7 @@ public class TwoPlayer extends Background {
 	private Button previousButton, nextButton, previousArribaButton, nextArribaButton, playButton, backButton;
 
 	public TwoPlayer() throws IOException {
-		super("/flappy/view/SelectCharacter2.fxml");
+		super("/flappy/view/SelectCharacterTwo.fxml");
 
 		pajaritos.add(new Bird(REDBIRD));
 		pajaritos.add(new Bird(BLUEBIRD));
@@ -97,11 +97,11 @@ public class TwoPlayer extends Background {
 		super.start();
 		paneNubes.getChildren().addAll(nubes, pajarito, pajaritoArriba);
 		pajarito.aleteo();
-		pajarito.setTranslateX(362);
-		pajarito.setTranslateY(320);
+		pajarito.setTranslateX(360);
+		pajarito.setTranslateY(290);
 		pajaritoArriba.aleteo();
-		pajaritoArriba.setTranslateX(362);
-		pajaritoArriba.setTranslateY(165);
+		pajaritoArriba.setTranslateX(360);
+		pajaritoArriba.setTranslateY(145);
 		
 	}
 
@@ -172,7 +172,7 @@ public class TwoPlayer extends Background {
 
 	@FXML
 	void playButtonAction(ActionEvent event) {
-		FlappyApp.irA(FlappyApp.juego2);
+		FlappyApp.irA(FlappyApp.juegoTwo);
 		playerText.setText(playerText.getText().toUpperCase());
 		nombre.bind(playerText.textProperty());
 		playerArribaText.setText(playerArribaText.getText().toUpperCase());

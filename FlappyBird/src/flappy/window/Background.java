@@ -49,12 +49,10 @@ public abstract class Background extends Screen {
 		}
 		
 		if (e.getCode().equals(KeyCode.M)) {
-			if (!musicaMenu.isMuted() || !musicaJuego.isMuted()) {
+			if (!musicaMenu.isMuted()) {
 				musicaMenu.mute(true);
-				musicaJuego.mute(true);
 			} else {
 				musicaMenu.mute(false);
-				musicaJuego.mute(false);
 			}
 		}
 	}

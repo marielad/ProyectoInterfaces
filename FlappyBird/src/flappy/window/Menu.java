@@ -95,6 +95,7 @@ public class Menu extends Background {
 
 	@FXML
 	void exitButtonAction(ActionEvent event) {
+		FlappyApp.baseDatos.closeConexion();
 		FlappyApp.getPrimaryStage().close();
 	}
 	

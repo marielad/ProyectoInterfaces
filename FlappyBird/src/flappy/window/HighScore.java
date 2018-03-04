@@ -2,16 +2,9 @@ package flappy.window;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import flappy.app.FlappyApp;
-import flappy.database.ScoreDB;
-import flappy.reports.InformeJasper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,46 +40,8 @@ public class HighScore extends Background {
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		reportButton.setOnAction(e -> onReportButtonAction(e));
 		
-		updateScore();
-	}
-	
-	public ObservableList<String> cargarDatos() throws Exception {
-		
-		ObservableList<String> datos = FXCollections.observableArrayList();
-		
-		int contador = 1;
-
-		ScoreDB conn = new ScoreDB();
-		Statement stmt = conn.getConexion().createStatement();
-
-		try {
-
-			ResultSet rstSet = stmt.executeQuery("SELECT TOP 10 Nombre, Puntos FROM Puntuaciones ORDER BY Puntos DESC");
-
-			while (rstSet.next()) {
-
-				String nomb = rstSet.getString(1);
-				int puntos = rstSet.getInt(2);
-
-				datos.add(contador + ".- " + nomb + " " + puntos);
-				contador++;
-				
-			}
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		conn.closeConexion();
-		return datos;
-	}
-	
-	private void updateScore() {
-		try {
-			listScore.setItems(cargarDatos());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		FlappyApp.baseDatos.cargarPuntuaciones();
+		listScore.setItems(FlappyApp.baseDatos.datos);
 	}
 	
 	@Override
@@ -103,8 +58,7 @@ public class HighScore extends Background {
 	
     @FXML
     void onReportButtonAction(ActionEvent event) {
-    	InformeJasper informe = new InformeJasper();
-		informe.show();
+    	FlappyApp.baseDatos.cargarJasper();
     }
 	
 	@FXML
