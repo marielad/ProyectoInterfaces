@@ -1,7 +1,5 @@
 package flappy.sprites;
 
-import java.sql.Statement;
-
 import flappy.sound.Sounds;
 import gamefx.Sound;
 import gamefx.Sprite;
@@ -34,16 +32,8 @@ public class Explosion extends Sprite {
 	}
 	
 	public void explode() {
+		deathSound.stop();
 		explosion.playFromStart();
-		tarea = new Task<Void>() {
-			protected Void call() throws Exception {
-				deathSound.stop();
-				return null;
-			}
-		};
-		tarea.setOnSucceeded(a -> {
-			deathSound.play();
-		});
-		new Thread(tarea).start();
+		deathSound.play();
  	}
 }

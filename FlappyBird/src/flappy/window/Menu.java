@@ -52,9 +52,9 @@ public class Menu extends Background {
 
 	@FXML
 	void onePlayerButtonAction(ActionEvent event) {
-		OnePlayer seleccion;
+		SelectCharacter seleccion;
 		try {
-			seleccion = new OnePlayer();
+			seleccion = new SelectCharacter();
 			FlappyApp.goTo(seleccion);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,9 +63,9 @@ public class Menu extends Background {
 
 	@FXML
 	void twoPlayerButtonAction(ActionEvent event) {
-		TwoPlayer seleccion;
+		SelectCharacterTwo seleccion;
 		try {
-			seleccion = new TwoPlayer();
+			seleccion = new SelectCharacterTwo();
 			FlappyApp.goTo(seleccion);
 		} catch (IOException e) {
 			e.printStackTrace();

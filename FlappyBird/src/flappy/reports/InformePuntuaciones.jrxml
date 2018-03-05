@@ -41,7 +41,7 @@
 			</textField>
 			<image>
 				<reportElement x="170" y="10" width="238" height="50" uuid="c6ec6149-ded6-405b-998f-c8a33f82f1db"/>
-				<imageExpression><![CDATA["src/flappy/resources/Title.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/flappy/resources/puntuacionesJasper.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="360" y="71" width="120" height="14" uuid="4ba56450-7dee-4e2e-971a-2d6f093edece"/>

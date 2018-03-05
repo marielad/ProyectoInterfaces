@@ -142,14 +142,14 @@ public class Game extends Background {
 		super.start();
 		paneNubes.getChildren().add(nubes);
 		
-		pajarito = OnePlayer.pajarito;
+		pajarito = SelectCharacter.pajarito;
 		pajarito.setTranslateX(100);
 		pajarito.setTranslateY(200);  
 		
 		puntuacion = new Score();
 		puntuacion.setTranslateX(873);
 		puntuacion.setTranslateY(5);
-		nombreTexto = OnePlayer.nombre;		
+		nombreTexto = SelectCharacter.nombre;		
 		puntuacionTexto = new SimpleStringProperty(this, "puntuacionTexto", "SCORE:");
 		panePuntuacion.getChildren().add(puntuacion);
 		puntuacion.getPuntuacion().textProperty().bind(puntuacionTexto.concat(pajarito.getScore().asString()));
@@ -168,9 +168,11 @@ public class Game extends Background {
 		pajarito.setScore(0);
 		gameMusic.stop();
 		pajarito.stop();
+		pajarito.rotateProperty().set(0);
 		tuberias.stop();
 		paneJuego.getChildren().remove(tuberias);
 		paneJuego.getChildren().remove(pajarito);
+		paneJuego.getChildren().remove(explosion);
 		paneNubes.getChildren().remove(nubes);
 		panePuntuacion.getChildren().remove(puntuacion);
 		pausado = false;

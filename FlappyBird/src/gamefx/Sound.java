@@ -23,13 +23,8 @@ public class Sound {
 	 */
 	
 	public Sound(String ruta) {
-		tarea = new Task<MediaPlayer>() {
-			protected MediaPlayer call() throws Exception {
-				String url = getClass().getResource(ruta).toExternalForm();
-				return player = new MediaPlayer(new Media(url));
-			}
-		};
-		new Thread(tarea).start();
+		String url = getClass().getResource(ruta).toExternalForm();
+		player = new MediaPlayer(new Media(url));
 	}
 
 	/**
@@ -37,8 +32,14 @@ public class Sound {
 	 */
 	
 	public void playIndefinite() {
-		player.setCycleCount(MediaPlayer.INDEFINITE);
-		player.play();
+		tarea = new Task<MediaPlayer>() {
+			protected MediaPlayer call() throws Exception {
+				player.setCycleCount(MediaPlayer.INDEFINITE);
+				player.play();
+				return player;
+			}
+		};
+		new Thread(tarea).start();
 	}
 
 	public void play() {

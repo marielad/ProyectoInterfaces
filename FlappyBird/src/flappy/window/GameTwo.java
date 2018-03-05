@@ -128,6 +128,8 @@ public class GameTwo extends Background {
     void tryAgainButtonAction(ActionEvent event) {
 		panePausa.setDisable(false);
 		overBox.setVisible(false);
+		explode = false;
+		explodeTwo = false;
 		resume();
 		stop();
 		start();
@@ -143,18 +145,18 @@ public class GameTwo extends Background {
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
-		pajarito = TwoPlayer.pajarito;
+		pajarito = SelectCharacterTwo.pajarito;
 		pajarito.setTranslateX(100);
-		pajarito.setTranslateY(200);
+		pajarito.setTranslateY(280);
 		
-		pajaritoTwo = TwoPlayer.pajaritoArriba;
+		pajaritoTwo = SelectCharacterTwo.pajaritoArriba;
 		pajaritoTwo.setTranslateX(100);
-		pajaritoTwo.setTranslateY(250);
+		pajaritoTwo.setTranslateY(220);
 		
 		puntuacion = new Score();
 		puntuacion.setTranslateX(873);
 		puntuacion.setTranslateY(5);
-		nombreTexto = TwoPlayer.nombre;		
+		nombreTexto = SelectCharacterTwo.nombre;		
 		puntuacionTexto = new SimpleStringProperty(this, "puntuacionTexto", "SCORE:");
 		panePuntuacion.getChildren().add(puntuacion);
 		puntuacion.getPuntuacion().textProperty().bind(puntuacionTexto.concat(pajarito.getScore().asString()));
@@ -162,7 +164,7 @@ public class GameTwo extends Background {
 		puntuacionTwo = new Score();
 		puntuacionTwo.setTranslateX(5);
 		puntuacionTwo.setTranslateY(5);
-		nombreTextoTwo = TwoPlayer.nombreArriba;		
+		nombreTextoTwo = SelectCharacterTwo.nombreArriba;		
 		puntuacionTextoTwo = new SimpleStringProperty(this, "puntuacionTexto2", "SCORE:");
 		panePuntuacion.getChildren().add(puntuacionTwo);
 		puntuacionTwo.getPuntuacion().textProperty().bind(puntuacionTextoTwo.concat(pajaritoTwo.getScoreTwo().asString()));
@@ -186,11 +188,15 @@ public class GameTwo extends Background {
 		pajaritoTwo.setScoreTwo(0);
 		gameMusic.stop();
 		pajarito.stop();
+		pajarito.rotateProperty().set(0);
 		pajaritoTwo.stop();
+		pajaritoTwo.rotateProperty().set(0);
 		tuberias.stop();
 		paneJuego.getChildren().remove(tuberias);
 		paneJuego.getChildren().remove(pajarito);
 		paneJuego.getChildren().remove(pajaritoTwo);
+		paneJuego.getChildren().remove(explosion);
+		paneJuego.getChildren().remove(explosionTwo);
 		paneNubes.getChildren().remove(nubes);
 		panePuntuacion.getChildren().remove(puntuacion);
 		panePuntuacion.getChildren().remove(puntuacionTwo);
@@ -294,12 +300,12 @@ public class GameTwo extends Background {
 							explosion.setTranslateY(pajarito.getTranslateY()-32);
 							
 							paneJuego.getChildren().add(explosion);
+							paneJuego.getChildren().remove(pajarito);
 							explosion.explode();
-							paneJuego.getChildren().remove(explosion);
+							explode = true;
 						}
 
 						pajarito.stop();
-						paneJuego.getChildren().remove(pajarito);
 						shapeAux = null;
 					}
 				}
@@ -312,12 +318,12 @@ public class GameTwo extends Background {
 							explosionTwo.setTranslateY(pajaritoTwo.getTranslateY()-32);
 							
 							paneJuego.getChildren().add(explosionTwo);
+							paneJuego.getChildren().remove(pajaritoTwo);
 							explosionTwo.explode();
-							paneJuego.getChildren().remove(explosionTwo);
+							explodeTwo = true;
 						}
 						
 						pajaritoTwo.stop();
-						paneJuego.getChildren().remove(pajaritoTwo);
 						shapeAuxTwo = null;
 					}
 				}
