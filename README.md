@@ -1,9 +1,9 @@
-# **Demo FlappyBird**
+# **FlappyBird Alpha**
 ![N|Flappy](https://lh3.googleusercontent.com/-ouhhujXyOQU/WpfcSuESjdI/AAAAAAAAAIQ/1EMLrjRf4U4aKEpxfYY79Cjzbarz0qxYwCL0BGAs/w530-d-h217-rw/prueba.gif)
 
 ### Introducción
 
-Este proyecto consiste en el diseño y estructura de un motor de videojuego en dos dimensiones. Este mismo contiene una demo, en la que el jugador controla a un pájaro que vuela por la pantalla, y que debe pasar por el espacio que queda libre entre las tuberías, sin tocarse con estas, ya que tocarlas conllevaría el fin de la partida. La escena se va desplazando lateralmente, y cuantas más tuberías consigas pasar, más puntos obtendrás.
+Este proyecto consiste en el diseño y estructura de un motor de videojuego en dos dimensiones. Este mismo contiene un alpha, en la que el jugador controla a un pájaro que vuela por la pantalla, y que debe pasar por el espacio que queda libre entre las tuberías, sin tocarse con estas, ya que tocarlas conllevaría el fin de la partida, y cuantas más tuberías consigas pasar, más puntos obtendrás. La pantalla da la sensación de desplazamiento lateral.
 
 ### Características
 
@@ -12,7 +12,7 @@ Este proyecto consiste en el diseño y estructura de un motor de videojuego en d
  - Capacidad para reproducir sonidos.
  - Escrito básicamente en Java ([JavaFX][javafx], [.CSS][css], [.FXML][fxml]).
  - Proyecto Maven dos dependencias:
-    - Generación de informes sobre la demo mediante [JasperReports][jasper].
+    - Generación de informes sobre el alpha mediante [JasperReports][jasper].
     - Conexión a base de datos embebida ([HSQLDB][hsql]).
  - Software completamente gratis.
 

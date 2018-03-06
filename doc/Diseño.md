@@ -1,15 +1,15 @@
 # **DISEÑO DE LA DEMO**
 
-En esta demo en concreto, las distintas "Screens" que usamos comparten diversos elementos de la demo, por lo tanto creamos una clase intermedia llamada `Background` que extiende de `Screen`. Las diferentes pantallas ("Screens") heredan de `Background`.
+En este alpha en concreto, las distintas "Screens" que usamos comparten diversos elementos del juego, por lo tanto creamos una clase intermedia llamada `Background` que extiende de `Screen`. Las diferentes pantallas ("Screens") heredan de `Background`.
 
-Tras su ejecución, la demo muestra un `Background` principal `Menu` en la que aparecen seis botones que acceden a distintas pantallas: "One Player", "Two players", "HighScores", "Options", "About" y "Exit".
+Tras su ejecución, el alpha muestra un `Background` principal `Menu` en la que aparecen seis botones que acceden a distintas pantallas: "One Player", "Two players", "HighScores", "Options", "About" y "Exit".
 
  - **One Player:** Al pulsar este botón nos posiciona en `SelectCharacter`.
  - **Two Players:** Al pulsar este botón nos posiciona en `SelectCharacterTwoPlayers`.
  - **Highscores:** Al pulsar este botón nos posiciona en `HighScore`.
  - **Options:** Al pulsar este botón nos posiciona en `Options`.
  - **About:** Al pulsar este botón nos posiciona en `About`.
- - **Exit:** Al pulsar este botón nos cierra la demo.
+ - **Exit:** Al pulsar este botón nos cierra el juego.
 
 **`SelectCharacter:`** permite seleccionar un pajaro e ingresar un nombre para crear un jugador y a continuación elegir entre una de estas dos opciones:
 
@@ -20,13 +20,13 @@ Tras su ejecución, la demo muestra un `Background` principal `Menu` en la que a
 
 **`SelectCharacterTwoPlayers:`** muestra el mismo contenido que `SelectCharacter`, pero en este caso, seleccionamos un pajaro e ingresamos un nombre para cada jugador (dos jugadores) que jugarán en la misma partida.
 
-**`HighScore:`** mediante una consulta a la base de datos de la demo, nos indicará las 10 mejores puntuaciones realizadas. También nos da la siguiente opción:
+**`HighScore:`** mediante una consulta a la base de datos del alpha, nos indicará las 10 mejores puntuaciones realizadas. También nos da la siguiente opción:
 
 - **Generar informe:** Al pulsar este botón se genera un informe `JasperReports` con los datos de esa consulta.
 
-**`Options:`** permite, mediante un botón, silenciar el sonido de la demo.
+**`Options:`** permite, mediante un botón, silenciar el sonido del alpha.
 
-**`About:`** muestra información acerca de la demo.
+**`About:`** muestra información acerca del alpha.
 
 ### Capturas
 
@@ -38,5 +38,5 @@ Tras su ejecución, la demo muestra un `Background` principal `Menu` en la que a
 ### Controles
 
  + `SPACE` o `↑`: Salto del  pájaro.
- + `M`: Silencia el sonido de la demo.
- + `ESCAPE`: Ir hacia atrás o pausar la demo.
+ + `M`: Silencia el sonido del alpha.
+ + `ESCAPE`: Ir hacia atrás o pausar el alpha.
