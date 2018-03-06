@@ -12,10 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Menu del alpha, con el cual iremos a distintas partes del juego
+ * dependiendo de lo que seleccionemos en el.
  * @author Jorge Delgado, Mariela Dorta
  *
  */
+
 public class Menu extends Background {
 	
 	@FXML
@@ -52,6 +54,7 @@ public class Menu extends Background {
 
 	@FXML
 	void onePlayerButtonAction(ActionEvent event) {
+		//Hay que arreglar algunos errores visuales
 		SelectCharacter seleccion;
 		try {
 			seleccion = new SelectCharacter();
@@ -63,6 +66,7 @@ public class Menu extends Background {
 
 	@FXML
 	void twoPlayerButtonAction(ActionEvent event) {
+		//Hay que arreglar algunos errores visuales
 		SelectCharacterTwo seleccion;
 		try {
 			seleccion = new SelectCharacterTwo();
@@ -74,13 +78,7 @@ public class Menu extends Background {
 
 	@FXML
 	void highScoreButtonAction(ActionEvent event) {
-		HighScore highScore;
-		try {
-			highScore = new HighScore();
-			FlappyApp.goTo(highScore);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FlappyApp.goTo(FlappyApp.puntuaciones);
 	}
 
 	@FXML

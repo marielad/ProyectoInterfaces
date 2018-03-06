@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
 /**
- * 
+ *
  * @author Jorge Delgado, Mariela Dorta
  *
  */
@@ -33,7 +33,6 @@ public class Bird extends Sprite {
 	
  	private Ellipse shape;
  	
- 	//Pruebas Jorge
 	public static IntegerProperty score = new SimpleIntegerProperty(0);
 	public static IntegerProperty scoreTwo = new SimpleIntegerProperty(0);
 
@@ -87,13 +86,15 @@ public class Bird extends Sprite {
 	/**
 	 * Constructor por defecto
 	 */
+	
  	public Bird() {
  		this(PAJARITO);
  	}
 	
  	/**
- 	 * jump() es un m�todo que se utiliza para hacer que el pajarito salte
+ 	 * jump() es un método que se utiliza para hacer que el pajarito salte
  	 */
+ 	
 	public void jump() {
 		jumpSound.stop();
         caer.stop();
@@ -110,24 +111,27 @@ public class Bird extends Sprite {
 	}
  	
 	/**
-	 * isSaltando es un m�todo para saber si el pajarito est� saltando o no
+	 * isSaltando es un método para saber si el pajarito est� saltando o no
 	 * @return es un Boolean 
 	 */
+	
  	public boolean isSaltando() {
 		return saltando;
 	}
  	
  	/**
- 	 * isPausado() es un m�todo que dice si el pajarito esta pausado o no
+ 	 * isPausado() es un método que dice si el pajarito esta pausado o no
  	 * @return devuelve un Boolean
  	 */
+ 	
  	public boolean isPausado() {
 		return pausado;
 	}
  	
 	/**
-	 *  start() es un m�todo que inicializa las transiciones del pajarito	
+	 *  start() es un método que inicializa las transiciones del pajarito	
 	 */
+ 	
  	public void start() {
  		caer.play();
  		aleteo.playFromStart();
@@ -135,8 +139,9 @@ public class Bird extends Sprite {
  	}
  	
  	/**
-	 *  pause() es un m�todo que pausa las transiciones del pajarito	
+	 *  pause() es un método que pausa las transiciones del pajarito	
 	 */
+ 	
  	public void pause() {
  		caer.pause();
  		saltar.pause();
@@ -145,8 +150,9 @@ public class Bird extends Sprite {
  	}
  	
  	/**
-	 *  resume() es un m�todo que reanuda las transiciones del pajarito	
+	 *  resume() es un método que reanuda las transiciones del pajarito	
 	 */
+ 	
  	public void resume() {
  		caer.play();
  		aleteo.play();
@@ -156,6 +162,7 @@ public class Bird extends Sprite {
  	/**
 	 *  stop() es un m�todo que para las transiciones del pajarito	
 	 */
+ 	
  	public void stop() {
  		caer.stop();
  		aleteo.stop();
@@ -163,8 +170,9 @@ public class Bird extends Sprite {
  	}
  	
  	/**
- 	 * aleteo() es un m�todo que inicializa la transici�n infinita del pajarito volando
+ 	 * aleteo() es un método que inicializa la transici�n infinita del pajarito volando
  	 */
+ 	
  	public void aleteo() {
  		aleteo.playFromStart();
  	}
@@ -173,6 +181,7 @@ public class Bird extends Sprite {
  	 * getScore es un getter del IntegerProperty score
  	 * @return score
  	 */
+ 	
 	public final IntegerProperty getScore() {
 		return score;
 	}
@@ -181,6 +190,7 @@ public class Bird extends Sprite {
 	 * setScore es un setter del IntegerProperty score
 	 * @param score
 	 */
+	
 	public final void setScore(final int score) {
 		Bird.score.set(score);
 	}

@@ -13,10 +13,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Clase que muestra las mejores puntuaciones registradas en el juego
  * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
  *
  */
+
 public class HighScore extends Background {
 
 	@FXML
@@ -39,15 +40,14 @@ public class HighScore extends Background {
 	public void initialize(URL location, ResourceBundle resources) {
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		reportButton.setOnAction(e -> onReportButtonAction(e));
-		
-		FlappyApp.baseDatos.cargarPuntuaciones();
-		listScore.setItems(FlappyApp.baseDatos.datos);
 	}
 	
 	@Override
 	public void start() {
 		super.start();
 		paneNubes.getChildren().add(nubes);
+		FlappyApp.baseDatos.cargarPuntuaciones();
+		listScore.setItems(FlappyApp.baseDatos.datos);
 	}
 
 	@Override

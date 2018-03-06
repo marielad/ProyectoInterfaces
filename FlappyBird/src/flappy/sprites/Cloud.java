@@ -11,6 +11,7 @@ import javafx.util.Duration;
  * @author Jorge Delgado, Mariela Dorta, Fran Vargas
  *
  */
+
 public class Cloud extends Sprite {
 	
 	private static final String NUBE = "/flappy/resources/flappyCloud.png";
@@ -19,8 +20,9 @@ public class Cloud extends Sprite {
 
  	/**
  	 * Constructor de nubes 
- 	 * @param duration se le pasa para darle una duraciÛn a cada nube
+ 	 * @param duration se le pasa para darle una duraci√≥n a cada nube
  	 */
+ 	
 	public Cloud(Duration duration) {
 		super(NUBE);
 		setLayoutY(Math.random() * FlappyApp.ALTO);			
@@ -40,22 +42,25 @@ public class Cloud extends Sprite {
 	}
 	
 	/**
-	 * mover() es un mÈtodo que inicializa las transiciones de cada nube d·ndole una velocidad diferente gracias al Duration	
+	 * mover() es un m√©todo que inicializa las transiciones de cada nube d√°ndole una velocidad diferente gracias al Duration	
 	 */
+	
 	public void mover() {
 		mover.playFrom(Duration.seconds(Math.random() * mover.getDuration().toSeconds()));
 	}
 	
 	/**
-	 * pause() es un mÈtodo que pausa las transiciones de las nubes	
+	 * pause() es un m√©todo que pausa las transiciones de las nubes	
 	 */
+	
 	public void pause() {
 		mover.pause();
 	}
 	
 	/**
-	 * resume() es un mÈtodo que reanuda las transiciones de las nubes	
+	 * resume() es un m√©todo que reanuda las transiciones de las nubes	
 	 */
+	
 	public void resume() {
 		mover.play();
 	}

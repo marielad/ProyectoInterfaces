@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Modelo de los datos con los que vamos a rellenar la base de datos
+ * Modelo de los datos con los que vamos a rellenar el informe Jasper
  * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
  *
  */

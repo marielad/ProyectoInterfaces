@@ -28,7 +28,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 
 /**
- * 
+ * Clase que se encarga de gestionar la partida para un jugador
  * @author Jorge Delgado, Mariela Dorta, Fran Vargas
  *
  */
@@ -82,6 +82,11 @@ public class Game extends Background {
 		exitButton1.setOnAction(e -> exitButtonAction(e));
 	}
 	
+	/**
+	 * Función que se encarga de disparas distintos eventos cuando seleccionamos
+	 * una determinada tecla
+	 */
+	
 	@Override
 	protected void onKeyPressed(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ESCAPE)) {
@@ -104,6 +109,11 @@ public class Game extends Background {
 		}
 	}
 	
+	/**
+	 * Función que al dispararse nos lleva al menu del juego
+	 * @param event
+	 */
+	
 	@FXML
     void exitButtonAction(ActionEvent event) {
     	resume();
@@ -112,6 +122,11 @@ public class Game extends Background {
 		buttonsBox.setVisible(false);
 		overBox.setVisible(false);
     }
+	
+	/**
+	 * Función que al dispararse mutea o desmutea la música del juego
+	 * @param event
+	 */
 
 	@FXML
     void muteGameButtonAction(ActionEvent event) {
@@ -122,6 +137,12 @@ public class Game extends Background {
 		}
     }
 	
+	/**
+	 * Función que al dispararse vuelve a cargar una nueva partida
+	 * con el avatar y nombre escogidos
+	 * @param event
+	 */
+	
 	@FXML
     void tryAgainButtonAction(ActionEvent event) {
 		panePausa.setDisable(false);
@@ -130,12 +151,23 @@ public class Game extends Background {
 		stop();
 		start();
     }
+	
+	/**
+	 * Función que al dispararse reanuda el juego
+	 * @param event
+	 */
 
 	@FXML
     void resumeButtonAction(ActionEvent event) {
 		resume();
 		buttonsBox.setVisible(false);
     }
+	
+	/**
+	 * En start() cogemos el pajaro seleccionado y lo posicionamos,
+	 * agregamos el Sprite puntuacion al Pane, creamos las 6 tuberías 
+	 * iniciales y comenzamos las animaciones
+	 */
 	
 	@Override
 	public void start() {
@@ -162,6 +194,11 @@ public class Game extends Background {
 		pajarito.start();
 	}
 	
+	/**
+	 * En stop() paramos todos los recursos añadidos al Game()
+	 * como la música, el pajaro, la puntuación...
+	 */
+	
 	@Override
 	public void stop() {
 		super.stop();
@@ -178,6 +215,10 @@ public class Game extends Background {
 		pausado = false;
 	}
 	
+	/**
+	 * pause() pausa el juego
+	 */
+	
 	private void pause() {
 		super.stop();
 		gameMusic.pause();
@@ -187,6 +228,10 @@ public class Game extends Background {
 		pausado = true;
 	}
 	
+	/**
+	 * resume() lo reanuda
+	 */
+	
 	private void resume() {
 		super.start();
 		gameMusic.resume();
@@ -195,6 +240,11 @@ public class Game extends Background {
 		nubes.resume();
 		pausado = false;
 	}
+	
+	/**
+	 * En esta función se borran y generan tuberías, y se llama
+	 * a checkCollisions() indefinidamente
+	 */
 
 	protected void loop(long now) {
 		if (!tuberias.getChildren().isEmpty()) {
@@ -226,6 +276,10 @@ public class Game extends Background {
 		}
 		checkCollisions();
 	}
+	
+	/**
+	 * Función que comprueba si hemos chocado o no, y si hemos obtenido un punto
+	 */
 
 	public void checkCollisions() {
 		for (Node node : tuberias.getChildren()) {
@@ -256,6 +310,13 @@ public class Game extends Background {
 			}
 		}
 	}
+	
+	/**
+	 * En caso de que anteriormete hayamos chocado, se desencadena gameOver()
+	 * con lo que se creará la animación de una explosión en la posicion donde 
+	 * el pajaro chocó, nos mostrará un menu de reintento con nuestro nombre 
+	 * y puntuación, e inserta estos datos en la base de datos.
+	 */
 	
 	private void gameOver() {
 		explosion = new Explosion();

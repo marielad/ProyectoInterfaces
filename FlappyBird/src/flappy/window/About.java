@@ -13,10 +13,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Clase que muestra el About de nuestra aplicación
  * @author Jorge Delgado, Mariela Dorta, Daniel Paredes
  *
  */
+
 public class About extends Background {
 
 	@FXML
@@ -39,13 +40,8 @@ public class About extends Background {
 	public void initialize(URL location, ResourceBundle resources) {
 		volverButton.setOnAction(e -> volverButtonAction(e));
 		
-		acercaDeText.setText("Esta aplicación está desarrollada en el IDE Eclipse 4.7 (Oxygen). Los desarrolladores de esta\r\n" + 
-				"aplicación, son tres estudiantes del ciclo superior de Desarrollo de Aplicaciones\r\n" +  
-				"Multiplataforma (DAM) como trabajo final de la asignatura de Desarrollo de Interfaces.\r\n\n" + 
-				"La aplicación está basada en el juego para móviles 'Flappy Bird' del desarrollador vietnamita\r\n"+
-				"Dong Nguyen, lanzada el 24 de mayo de 2013.\r\n\n" + 
-				"Esta supone la versión 1.0 de esta aplicación de escritorio.\r\n\n" + 
-				"Fecha de lanzamiento a 2 de febrero del año 2018.\r\n\n" + 
+		acercaDeText.setText("Versión alpha de escritorio para el proyecto final de Desarollo de Interfaces.\r\n\n" + 
+				"Fecha de lanzamiento: 7 de marzo de 2018.\r\n\n" + 
 				"Creadores Jorge Delgado Díaz, Mariela Dorta Díaz, Daniel Paredes Sánchez.");
 	}
 	

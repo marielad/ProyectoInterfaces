@@ -50,7 +50,7 @@ public class ScoreDB {
 	
 	/**
 	 * Constructor de la base de datos HSLQDB:
-	 * Creamos una tabla con los campos Nombre y Puntos
+	 * Creamos una tabla con los campos IDJugador, Nombre y Puntos
 	 */
 	
 	public ScoreDB() {
@@ -96,6 +96,13 @@ public class ScoreDB {
 		});
 		new Thread(tarea).start();
 	}
+	
+	/**
+	 * cargarPuntuaciones() hace la consulta que guardaremos en HighScore
+	 * @throws SQLException
+	 * @throws JRException
+	 * @throws IOException
+	 */
 	
 	public void cargarPuntuaciones() {
 		datos.clear();
@@ -205,7 +212,7 @@ public class ScoreDB {
 	}
 
 	/**
-	 * closeConexion() sirve para cerrar la conexion SQL
+	 * closeConexion() sirve para cerrar la conexion HSQLDB
 	 */
 	
 	public void closeConexion() {

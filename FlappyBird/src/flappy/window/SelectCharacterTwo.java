@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
- *
+ * Clase multijugador, donde cada jugador selecciona un avatar y un nombre para la partida
  * @author Jorge Delgado, Mariela Dorta
  *
  */
@@ -47,7 +47,7 @@ public class SelectCharacterTwo extends Background {
 	public static StringProperty nombreArriba = new SimpleStringProperty();
 	
 	@FXML
-	private Pane paneNubes;
+	private Pane paneNubes, panePajarito;
 
 	@FXML
 	private TextField playerText, playerArribaText;
@@ -55,6 +55,11 @@ public class SelectCharacterTwo extends Background {
 	@FXML
 	private Button previousButton, nextButton, previousArribaButton, nextArribaButton, playButton, backButton;
 
+	/**
+	 * Constructor de SelectCharacterTwo() en el añadimos los avatares disponibles para su selección
+	 *
+	 */
+	
 	public SelectCharacterTwo() throws IOException {
 		super("/flappy/view/SelectCharacterTwo.fxml");
 
@@ -72,6 +77,14 @@ public class SelectCharacterTwo extends Background {
 		pajaritosArriba.add(PURPLEBIRD2);
 		pajaritosArriba.add(YELLOWBIRD2);
 	}
+	
+	/**
+	 * En su inicialización creamos 2 pajaros por defecto, los agregamos al Pane
+	 * correspondiente, controlamos que no se pueda iniciar el juego sin antes 
+	 * introducir los nombres de los jugadores y controlamos que el nombre no sea
+	 * mayor que 10.
+	 *
+	 */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +98,7 @@ public class SelectCharacterTwo extends Background {
 		pajarito = new Bird();
 		pajaritoArriba = new Bird();
 		
-		paneNubes.getChildren().addAll(nubes, pajarito, pajaritoArriba);
+		panePajarito.getChildren().addAll(pajarito, pajaritoArriba);
 		
 		playButton.disableProperty().bind(playerText.textProperty().isEmpty().or(playerArribaText.textProperty().isEmpty()));
 
@@ -108,10 +121,15 @@ public class SelectCharacterTwo extends Background {
 		previousButton.setVisible(false);
 		previousArribaButton.setVisible(false);
 	}
+	
+	/**
+	 * En start() posicionamos los pajaritos y los animamos
+	 */
 
 	@Override
 	public void start() {
 		super.start();
+		paneNubes.getChildren().add(nubes);
 		pajarito.aleteo();
 		pajarito.setTranslateX(360);
 		pajarito.setTranslateY(290);
@@ -120,22 +138,35 @@ public class SelectCharacterTwo extends Background {
 		pajaritoArriba.setTranslateY(145);
 		
 	}
+	
+	/**
+	 * En stop() simplemente paramos el gameloop
+	 */
 
 	@Override
 	public void stop() {
 		super.stop();
 	}
+	
+	/**
+	 * Las siguientes funciones de evento tienen como objetivo cambiar entre
+	 * los 6 diferentes pajaros a elegir teniendo en cuenta el pájaro en el
+	 * que estamos para irnos desplazando por estos pajaros de inicio a fin en orden.
+	 * También controla los botones y los desabilita en caso de que no hayan más
+	 * pajaros en una dirección.
+	 * @param event
+	 */
 
 	@FXML
 	void nextButtonAction(ActionEvent event) {
 		if (indice < 5) {
 			paneNubes.getChildren().remove(nubes);
-			paneNubes.getChildren().remove(pajarito);
+			panePajarito.getChildren().remove(pajarito);
 			previousButton.setVisible(true);
 			stop();
 			indice++;
 			pajarito = pajaritos.get(indice);
-			paneNubes.getChildren().addAll(nubes, pajarito);
+			panePajarito.getChildren().add(pajarito);
 			start();
 			if (indice == 5) {
 				nextButton.setVisible(false);
@@ -147,12 +178,12 @@ public class SelectCharacterTwo extends Background {
 	void previousButtonAction(ActionEvent event) {
 		if (indice > 0) {
 			paneNubes.getChildren().remove(nubes);
-			paneNubes.getChildren().remove(pajarito);
+			panePajarito.getChildren().remove(pajarito);
 			nextButton.setVisible(true);
 			stop();
 			indice--;
 			pajarito = pajaritos.get(indice);
-			paneNubes.getChildren().addAll(nubes, pajarito);
+			panePajarito.getChildren().add(pajarito);
 			start();
 			if (indice == 0) {
 				previousButton.setVisible(false);
@@ -164,12 +195,12 @@ public class SelectCharacterTwo extends Background {
 	void nextArribaButtonAction(ActionEvent event) {
 		if (indiceArriba < 5) {
 			paneNubes.getChildren().remove(nubes);
-			paneNubes.getChildren().remove(pajaritoArriba);
+			panePajarito.getChildren().remove(pajaritoArriba);
 			previousArribaButton.setVisible(true);
 			stop();
 			indiceArriba++;
 			pajaritoArriba = pajaritosArriba.get(indiceArriba);
-			paneNubes.getChildren().addAll(nubes, pajaritoArriba);
+			panePajarito.getChildren().add(pajaritoArriba);
 			start();
 			if (indiceArriba == 5) {
 				nextArribaButton.setVisible(false);
@@ -181,19 +212,24 @@ public class SelectCharacterTwo extends Background {
 	void previousArribaButtonAction(ActionEvent event) {
 		if (indiceArriba > 0) {
 			paneNubes.getChildren().remove(nubes);
-			paneNubes.getChildren().remove(pajaritoArriba);
+			panePajarito.getChildren().remove(pajaritoArriba);
 			nextArribaButton.setVisible(true);
 			stop();
 			indiceArriba--;
 			pajaritoArriba = pajaritosArriba.get(indiceArriba);
-			paneNubes.getChildren().addAll(nubes, pajaritoArriba);
+			panePajarito.getChildren().add(pajaritoArriba);
 			start();
 			if (indiceArriba == 0) {
 				previousArribaButton.setVisible(false);
 			}
 		}
 	}
-
+	
+	/**
+	 * playButtonAction(ActionEvent event) tiene como objetivo iniciar el juego
+	 * compartiendo los nombres introducidos con Game()
+	 * @param event
+	 */
 
 	@FXML
 	void playButtonAction(ActionEvent event) {
@@ -204,6 +240,11 @@ public class SelectCharacterTwo extends Background {
 		nombreArriba.bind(playerArribaText.textProperty());
 		menuMusic.stop();
 	}
+	
+	/**
+	 * Volvemos al menu
+	 * @param event
+	 */
 	
 	@FXML
 	void backButtonAction(ActionEvent event) {

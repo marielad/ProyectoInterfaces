@@ -28,7 +28,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 
 /**
- * 
+ * Clase que se encarga de gestionar la partida para dos jugadores
  * @author Jorge Delgado, Mariela Dorta
  *
  */
@@ -84,6 +84,11 @@ public class GameTwo extends Background {
 		exitButton1.setOnAction(e -> exitButtonAction(e));
 	}
 	
+	/**
+	 * Función que se encarga de disparas distintos eventos cuando seleccionamos
+	 * una determinada tecla
+	 */
+	
 	@Override
 	protected void onKeyPressed(KeyEvent e) {
 		if (e.getCode().equals(KeyCode.ESCAPE)) {
@@ -102,7 +107,19 @@ public class GameTwo extends Background {
 				pajaritoTwo.jump();
 			}
 		}
+		if (e.getCode().equals(KeyCode.M)) {
+			if (!gameMusic.isMuted()) {
+				gameMusic.mute(true);
+			} else {
+				gameMusic.mute(false);
+			}
+		}
 	}
+	
+	/**
+	 * Función que al dispararse nos lleva al menu del juego
+	 * @param event
+	 */
 	
 	@FXML
     void exitButtonAction(ActionEvent event) {
@@ -112,17 +129,26 @@ public class GameTwo extends Background {
 		buttonsBox.setVisible(false);
 		overBox.setVisible(false);
     }
+	
+	/**
+	 * Función que al dispararse mutea o desmutea la música del juego
+	 * @param event
+	 */
 
 	@FXML
     void muteGameButtonAction(ActionEvent event) {
 		if (!menuMusic.isMuted() || !gameMusic.isMuted()) {
-			menuMusic.mute(true);
 			gameMusic.mute(true);
 		}else {
-			menuMusic.mute(false);
 			gameMusic.mute(false);
 		}
     }
+	
+	/**
+	 * Función que al dispararse vuelve a cargar una nueva partida
+	 * con los avatares y nombres escogidos
+	 * @param event
+	 */
 	
 	@FXML
     void tryAgainButtonAction(ActionEvent event) {
@@ -134,12 +160,23 @@ public class GameTwo extends Background {
 		stop();
 		start();
     }
+	
+	/**
+	 * Función que al dispararse reanuda el juego
+	 * @param event
+	 */
 
 	@FXML
     void resumeButtonAction(ActionEvent event) {
 		resume();
 		buttonsBox.setVisible(false);
     }
+	
+	/**
+	 * En start() cogemos los pajaros seleccionados y los posicionamos,
+	 * agregamos los Sprites puntuacion al Pane, creamos las 6 tuberías 
+	 * iniciales y comenzamos las animaciones
+	 */
 	
 	@Override
 	public void start() {
@@ -181,6 +218,11 @@ public class GameTwo extends Background {
 		pajaritoTwo.start();
 	}
 	
+	/**
+	 * En stop() paramos todos los recursos añadidos al Game()
+	 * como la música, los pajaros, las puntuaciones...
+	 */
+	
 	@Override
 	public void stop() {
 		super.stop();
@@ -203,6 +245,10 @@ public class GameTwo extends Background {
 		pausado = false;
 	}
 	
+	/**
+	 * pause() pausa el juego
+	 */
+	
 	private void pause() {
 		super.stop();
 		gameMusic.pause();
@@ -213,6 +259,10 @@ public class GameTwo extends Background {
 		pausado = true;
 	}
 	
+	/**
+	 * resume() lo reanuda
+	 */
+	
 	private void resume() {
 		super.start();
 		gameMusic.resume();
@@ -222,6 +272,11 @@ public class GameTwo extends Background {
 		nubes.resume();
 		pausado = false;
 	}
+	
+	/**
+	 * En esta función se borran y generan tuberías, y se llama
+	 * a checkCollisions() indefinidamente
+	 */
 
 	protected void loop(long now) {
 		if (!tuberias.getChildren().isEmpty()) {
@@ -254,6 +309,12 @@ public class GameTwo extends Background {
 		}
 		checkCollisions();
 	}
+	
+	/**
+	 * Función que comprueba si hemos chocado o no, y si hemos obtenido un punto.
+	 * En dos jugadores también se encarga de reproducir la explosión al perder
+	 * unos de los dos jugadores
+	 */
 
 	public void checkCollisions() {
 		for (Node node : tuberias.getChildren()) {
@@ -337,6 +398,12 @@ public class GameTwo extends Background {
 			}
 		}
 	}
+	
+	/**
+	 * En caso de que anteriormete hayamos chocado, se desencadena gameOver()
+	 * que nos mostrará un menu de reintento con nuestros nombres
+	 * y puntuaciones, e inserta estos datos en la base de datos.
+	 */
 	
 	private void gameOver() {
 		scoreLabel.textProperty().bind(nombreTexto.concat(" ").concat(puntuacionTexto.concat(pajarito.getScore().asString()).concat("  |  ")

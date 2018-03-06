@@ -9,6 +9,12 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.util.Duration;
 
+/**
+ * 
+ * @author Jorge Delgado, Mariela Dorta, Fran Vargas
+ *
+ */
+
 public class Explosion extends Sprite {
 	
 	Task<Void> tarea;
@@ -16,6 +22,11 @@ public class Explosion extends Sprite {
 	private static final String EXPLOSION = "/flappy/resources/explosion.png";
 	private Timeline explosion;
 	private Sound deathSound = Sounds.DEATH;
+	
+	/**
+	 * Constructor de la explosión
+	 * @param count
+	 */
 	
 	public Explosion(String url) {
 		super(url, 81, 9);
@@ -30,6 +41,9 @@ public class Explosion extends Sprite {
 	public Explosion() {
 		this(EXPLOSION);
 	}
+	/**
+	 * explode() anima y da sonido a la explosión
+	 */
 	
 	public void explode() {
 		deathSound.stop();

@@ -1,5 +1,11 @@
 package flappy.sprites;
 
+/**
+ * Clase en la que guardamos los pajaros
+ * @author Jorge Delgado, Mariela Dorta
+ *
+ */
+
 public class Birds {
 	
 	public static final Bird REDBIRD = new Bird("/flappy/resources/redBird.png");

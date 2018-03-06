@@ -6,6 +6,7 @@ import flappy.database.ScoreDB;
 import flappy.window.About;
 import flappy.window.Game;
 import flappy.window.GameTwo;
+import flappy.window.HighScore;
 import flappy.window.Menu;
 import flappy.window.Options;
 import javafx.application.Application;
@@ -15,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * Main
+ * Main que instancia una única vez las diferentes clases del juego
  * @author Jorge Delgado, Mariela Dorta
  *
  */
@@ -34,6 +35,7 @@ public class FlappyApp extends Application {
 	public static GameTwo juegoTwo;
 	public static Options opciones;
 	public static ScoreDB baseDatos;
+	public static HighScore puntuaciones;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -45,6 +47,7 @@ public class FlappyApp extends Application {
 		juegoTwo = new GameTwo();
 		opciones = new Options();
 		baseDatos = new ScoreDB();
+		puntuaciones = new HighScore();
 
 		scene = new Scene(menu, ANCHO, ALTO);
 		scene.getStylesheets().add(getClass().getResource("/flappy/style/style.css").toExternalForm());
@@ -65,7 +68,7 @@ public class FlappyApp extends Application {
 	}
 	
 	/**
-	 * Esta funci�n sirve para cambiar las vistas
+	 * Esta función sirve para cambiar las vistas
 	 * @param root le pasamos una clase hija de Screen
 	 */
 	public static void goTo(Parent root) {

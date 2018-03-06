@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
- * 
+ * Clase que generá un Background que comparten, en nuestro caso, todas las Screens
  *@author Jorge Delgado, Mariela Dorta
  */
 

@@ -18,10 +18,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Clase de un jugador, donde el jugador selecciona un avatar y un nombre para la partida
  * @author Jorge Delgado, Mariela Dorta
  *
  */
+
 public class SelectCharacter extends Background {
 
 	private static final int MAX_SIZE  = 11;
@@ -45,6 +46,11 @@ public class SelectCharacter extends Background {
 
 	@FXML
 	private Button previousButton, nextButton, playButton, backButton;
+	
+	/**
+	 * Constructor de SelectCharacter() en el añadimos los avatares disponibles para su selección
+	 * También cremos un pájaro por defecto
+	 */
 
 	public SelectCharacter() throws IOException {
 		super("/flappy/view/SelectCharacter.fxml");
@@ -58,6 +64,14 @@ public class SelectCharacter extends Background {
 
 		pajarito = new Bird();
 	}
+	
+	/**
+	 * En su inicialización creamos un pájaro por defecto, lo agregamos al Pane
+	 * correspondiente, controlamos que no se pueda iniciar el juego sin antes 
+	 * introducir el nombre del jugador  y controlamos que el nombre no sea
+	 * mayor que 10.
+	 *
+	 */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +93,10 @@ public class SelectCharacter extends Background {
 		
 		previousButton.setVisible(false);
 	}
+	
+	/**
+	 * En start() posicionamos el pajarito y los animamos
+	 */
 
 	@Override
 	public void start() {
@@ -88,6 +106,10 @@ public class SelectCharacter extends Background {
 		pajarito.setTranslateX(362);
 		pajarito.setTranslateY(228);
 	}
+	
+	/**
+	 * En stop() paramos el gameloop y borramos las nubes y el pajarito
+	 */
 
 	@Override
 	public void stop() {
@@ -95,6 +117,15 @@ public class SelectCharacter extends Background {
 		paneNubes.getChildren().remove(nubes);
 		paneNubes.getChildren().remove(pajarito);
 	}
+	
+	/**
+	 * Las siguientes funciones de evento tienen como objetivo cambiar entre
+	 * los 6 diferentes pajaros a elegir teniendo en cuenta el pájaro en el
+	 * que estamos para irnos desplazando por estos pajaros de inicio a fin en orden.
+	 * También controla los botones y los desabilita en caso de que no hayan más
+	 * pajaros en una dirección.
+	 * @param event
+	 */
 
 	@FXML
 	void nextButtonAction(ActionEvent event) {
@@ -109,15 +140,7 @@ public class SelectCharacter extends Background {
 			}
 		}
 	}
-
-	@FXML
-	void playButtonAction(ActionEvent event) {
-		FlappyApp.goTo(FlappyApp.juego);
-		playerText.setText(playerText.getText().toUpperCase());
-		nombre.bind(playerText.textProperty());
-		menuMusic.stop();
-	}
-
+	
 	@FXML
 	void previousButtonAction(ActionEvent event) {
 		if (indice > 0) {
@@ -131,6 +154,25 @@ public class SelectCharacter extends Background {
 			}
 		}
 	}
+	
+	/**
+	 * playButtonAction(ActionEvent event) tiene como objetivo iniciar el juego
+	 * compartiendo el nombre introducido con Game()
+	 * @param event
+	 */
+
+	@FXML
+	void playButtonAction(ActionEvent event) {
+		FlappyApp.goTo(FlappyApp.juego);
+		playerText.setText(playerText.getText().toUpperCase());
+		nombre.bind(playerText.textProperty());
+		menuMusic.stop();
+	}
+
+	/**
+	 * Volvemos al menu
+	 * @param event
+	 */
 
 	@FXML
 	void backButtonAction(ActionEvent event) {

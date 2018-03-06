@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
  * @author Jorge Delgado, Mariela Dorta
  *
  */
+
 public class Score extends Group {
 	
 	Label puntuacion;
@@ -19,6 +20,7 @@ public class Score extends Group {
 	/**
 	 * Constructor por defecto de Score que consta de un Sprite y un label
 	 */
+	
  	public Score() {
  		cuadroPuntuacion = new Sprite(PUNTUACION);
  		cuadroPuntuacion.setOpacity(0.5);
@@ -30,9 +32,10 @@ public class Score extends Group {
  	}
  	
  	/**
- 	 * Método que devuelve la label del group
+ 	 * MÃ©todo que devuelve la label del group
  	 * @return
  	 */
+ 	
 	public Label getPuntuacion() {
 		return puntuacion;
 	}

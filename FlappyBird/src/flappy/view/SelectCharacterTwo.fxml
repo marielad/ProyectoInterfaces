@@ -13,7 +13,8 @@
 
 <fx:root type="StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="paneNubes" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="paneNubes" />
+      <Pane fx:id="panePajarito" />
       <VBox alignment="CENTER">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">

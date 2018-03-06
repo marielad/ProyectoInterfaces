@@ -17,6 +17,7 @@ import javafx.util.Duration;
  * @author Jorge Delgado, Mariela Dorta, Fran Vargas
  *
  */
+
 public class Tube extends Group {
 
 	private static final String TUBO_UP = "/flappy/resources/flappyTubeUp.png";
@@ -41,6 +42,7 @@ public class Tube extends Group {
 	 * @param animate Es un boolean que indica si se quiere animar el tubo verticalmente
 	 * @param rotate Es un boolean que indica si se quiere rotar el tubo
 	 */
+	
 	public Tube(double screenWidth, double screenHeight, boolean animate, boolean rotate) {
 
 		posicionHueco = new SimpleDoubleProperty(this, "posicionHueco");
@@ -116,38 +118,43 @@ public class Tube extends Group {
 	}
 	
 	/**
-	 * play() es un m�todo que inicia las transiciones de las tuber�as
+	 * play() es un método que inicia las transiciones de las tuber�as
 	 */
+	
 	public void play() {
 		animacion.play();
 	}
 
 	/**
-	 * pause() es un m�todo que pausa las transiciones de las tuber�as
+	 * pause() es un método que pausa las transiciones de las tuber�as
 	 */
+	
 	public void pause() {
 		animacion.pause();
 	}
 	
 	/**
-	 * stop() es un m�todo que para las transiciones de las tuber�as
+	 * stop() es un método que para las transiciones de las tuber�as
 	 */
+	
 	public void stop() {
 		animacion.stop();
 	}
 	
 	/**
-	 * M�todo que devuelve el Shape de los tubos
+	 * Método que devuelve el Shape de los tubos
 	 * @return Shape.union(topTube.getShape(), bottomTube.getShape());
 	 */
+	
 	public Shape getShape() {
 		return Shape.union(topTube.getShape(), bottomTube.getShape());
 	}
 	
 	/**
-	 * M�todo que devuelve el Shape del  tubo auxiliar que se utiliza para las puntuaciones
+	 * Método que devuelve el Shape del tubo auxiliar que se utiliza para las puntuaciones
 	 * @return middleTube.getShape();
 	 */
+	
 	public Shape getMiddleShape() {
 	    return middleTube.getShape();
 	  }

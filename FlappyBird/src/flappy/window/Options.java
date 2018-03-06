@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Clase que contiene las opciones del juego
  * @author Jorge Delgado, Mariela Dorta
  *
  */
