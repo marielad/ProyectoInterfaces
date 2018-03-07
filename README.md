@@ -1,5 +1,6 @@
 # **FlappyBird Alpha**
-![N|Flappy](https://lh3.googleusercontent.com/-ouhhujXyOQU/WpfcSuESjdI/AAAAAAAAAIQ/1EMLrjRf4U4aKEpxfYY79Cjzbarz0qxYwCL0BGAs/w530-d-h217-rw/prueba.gif)
+
+![GIF](https://media.giphy.com/media/69xvneEpKGyx4L1Du2/giphy.gif)
 
 ### Introducción
 

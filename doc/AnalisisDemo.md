@@ -8,5 +8,6 @@ A continuación se mostrará una lista con los componentes del alpha:
  - **Tubo:** Elemento del alpha que se mueve horizontalmente de derecha a izquierda y se generá constantemente en el `Screen` a modo de obstáculo que debemos de superar, en este caso, pasando por el hueco que queda entre este tubo. Los tubos pueden rotarse y moverse verticalmente añadiendo cierta difcultad extra, en cierto modo, podríamos decir que es el enemigo al que debemos hacer frente.
  - **Nube:** Están presentes durante todo el alpha y forman parte del `Background` que comparten todas las pantallas del juego. Las nubes, posicionadas aletoriamente, se mueven horizontalmente de derecha a izquierda a diferentes velocidades. Por lo tanto, se trata de un componente meramente estético.
  - **Puntuación:** Marcador del progreso actual de la partida que cada vez que el pájaro pasa entre medio de los tubos, éste incrementa su valor en uno. Puede encontrarse en alguna de las equinas superiores de la pantalla del juego.
- - **Explosión:** Cuando el pájaro colisiona contra un tubo aparéce esta animación para dar una sensación de realismo al chocar.
+ - **Explosión:** Cuando el pájaro colisiona contra un tubo aparéce esta animación para dar feedback al usuario.
+
 

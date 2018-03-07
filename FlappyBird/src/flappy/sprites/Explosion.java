@@ -29,10 +29,10 @@ public class Explosion extends Sprite {
 	 */
 	
 	public Explosion(String url) {
-		super(url, 81, 9);
+		super(url, 5, 5);
 
 		KeyFrame ini = new KeyFrame(Duration.millis(0), new KeyValue(imageIndexProperty(), 0));
-        KeyFrame fin = new KeyFrame(Duration.millis(1000), new KeyValue(imageIndexProperty(), 81));
+        KeyFrame fin = new KeyFrame(Duration.millis(500), new KeyValue(imageIndexProperty(), 5));
 	
         explosion = new Timeline(ini, fin);
  		explosion.setCycleCount(1);

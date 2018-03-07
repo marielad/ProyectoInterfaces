@@ -32,12 +32,14 @@ public class SelectCharacterTwo extends Background {
 	Bird ORANGEBIRD = Birds.ORANGEBIRD;
 	Bird YELLOWBIRD = Birds.YELLOWBIRD;
 	Bird PURPLEBIRD = Birds.PURPLEBIRD;
+	Bird FRANBIRD = Birds.FRANBIRD;
 	Bird REDBIRD2 = Birds.REDBIRD2;
 	Bird GREENBIRD2 = Birds.GREENBIRD2;
 	Bird BLUEBIRD2 = Birds.BLUEBIRD2;
 	Bird ORANGEBIRD2 = Birds.ORANGEBIRD2;
 	Bird YELLOWBIRD2 = Birds.YELLOWBIRD2;
 	Bird PURPLEBIRD2 = Birds.PURPLEBIRD2;
+	Bird FRANBIRD2 = Birds.FRANBIRD2;
 	
 	private int indice = 0, indiceArriba = 0;
 	public static Bird pajarito, pajaritoArriba;
@@ -69,6 +71,7 @@ public class SelectCharacterTwo extends Background {
 		pajaritos.add(ORANGEBIRD);
 		pajaritos.add(PURPLEBIRD);
 		pajaritos.add(YELLOWBIRD);
+		pajaritos.add(FRANBIRD);
 		
 		pajaritosArriba.add(REDBIRD2);
 		pajaritosArriba.add(GREENBIRD2);
@@ -76,6 +79,7 @@ public class SelectCharacterTwo extends Background {
 		pajaritosArriba.add(ORANGEBIRD2);
 		pajaritosArriba.add(PURPLEBIRD2);
 		pajaritosArriba.add(YELLOWBIRD2);
+		pajaritosArriba.add(FRANBIRD2);
 	}
 	
 	/**
@@ -159,7 +163,7 @@ public class SelectCharacterTwo extends Background {
 
 	@FXML
 	void nextButtonAction(ActionEvent event) {
-		if (indice < 5) {
+		if (indice < 6) {
 			paneNubes.getChildren().remove(nubes);
 			panePajarito.getChildren().remove(pajarito);
 			previousButton.setVisible(true);
@@ -168,7 +172,7 @@ public class SelectCharacterTwo extends Background {
 			pajarito = pajaritos.get(indice);
 			panePajarito.getChildren().add(pajarito);
 			start();
-			if (indice == 5) {
+			if (indice == 6) {
 				nextButton.setVisible(false);
 			}
 		}
@@ -193,7 +197,7 @@ public class SelectCharacterTwo extends Background {
 	
 	@FXML
 	void nextArribaButtonAction(ActionEvent event) {
-		if (indiceArriba < 5) {
+		if (indiceArriba < 6) {
 			paneNubes.getChildren().remove(nubes);
 			panePajarito.getChildren().remove(pajaritoArriba);
 			previousArribaButton.setVisible(true);
@@ -202,7 +206,7 @@ public class SelectCharacterTwo extends Background {
 			pajaritoArriba = pajaritosArriba.get(indiceArriba);
 			panePajarito.getChildren().add(pajaritoArriba);
 			start();
-			if (indiceArriba == 5) {
+			if (indiceArriba == 6) {
 				nextArribaButton.setVisible(false);
 			}
 		}

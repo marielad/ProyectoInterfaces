@@ -8,6 +8,7 @@ import flappy.app.FlappyApp;
 import flappy.sound.Sounds;
 import flappy.sprites.Score;
 import flappy.sprites.Bird;
+import flappy.sprites.Birds;
 import flappy.sprites.Explosion;
 import flappy.sprites.Tube;
 import flappy.sprites.Tubes;
@@ -352,43 +353,44 @@ public class GameTwo extends Background {
 			        	pointSound.play();
 			        }
 				}
-				
-				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersectionTube.getBoundsInLocal().getWidth() != -1) {
-					if (!pausado) {
-						if (!explode) {
-							explosion = new Explosion();
-							explosion.setTranslateX(pajarito.getTranslateX()-32);
-							explosion.setTranslateY(pajarito.getTranslateY()-32);
-							
-							paneJuego.getChildren().add(explosion);
-							paneJuego.getChildren().remove(pajarito);
-							explosion.explode();
-							explode = true;
+				if(pajarito!=Birds.FRANBIRD) {
+					if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersectionTube.getBoundsInLocal().getWidth() != -1) {
+						if (!pausado) {
+							if (!explode) {
+								explosion = new Explosion();
+								explosion.setTranslateX(pajarito.getTranslateX()-32);
+								explosion.setTranslateY(pajarito.getTranslateY()-32);
+								
+								paneJuego.getChildren().add(explosion);
+								paneJuego.getChildren().remove(pajarito);
+								explosion.explode();
+								explode = true;
+							}
+	
+							pajarito.stop();
+							shapeAux = null;
 						}
-
-						pajarito.stop();
-						shapeAux = null;
 					}
 				}
-				
-				if (pajaritoTwo.getTranslateY() >= getHeight() || pajaritoTwo.getTranslateY() <= 0 || intersectionTubeTwo.getBoundsInLocal().getWidth() != -1) {
-					if (!pausado) {
-						if (!explodeTwo) {
-							explosionTwo = new Explosion();
-							explosionTwo.setTranslateX(pajaritoTwo.getTranslateX()-32);
-							explosionTwo.setTranslateY(pajaritoTwo.getTranslateY()-32);
+				if(pajaritoTwo!=Birds.FRANBIRD2) {
+					if (pajaritoTwo.getTranslateY() >= getHeight() || pajaritoTwo.getTranslateY() <= 0 || intersectionTubeTwo.getBoundsInLocal().getWidth() != -1) {
+						if (!pausado) {
+							if (!explodeTwo) {
+								explosionTwo = new Explosion();
+								explosionTwo.setTranslateX(pajaritoTwo.getTranslateX()-32);
+								explosionTwo.setTranslateY(pajaritoTwo.getTranslateY()-32);
+								
+								paneJuego.getChildren().add(explosionTwo);
+								paneJuego.getChildren().remove(pajaritoTwo);
+								explosionTwo.explode();
+								explodeTwo = true;
+							}
 							
-							paneJuego.getChildren().add(explosionTwo);
-							paneJuego.getChildren().remove(pajaritoTwo);
-							explosionTwo.explode();
-							explodeTwo = true;
+							pajaritoTwo.stop();
+							shapeAuxTwo = null;
 						}
-						
-						pajaritoTwo.stop();
-						shapeAuxTwo = null;
 					}
 				}
-				
 				if (pajarito.isPausado() && pajaritoTwo.isPausado()) {
 					if (!pausado) {
 						pause();

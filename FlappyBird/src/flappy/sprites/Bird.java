@@ -49,7 +49,7 @@ public class Bird extends Sprite {
  		saltar = new TranslateTransition();
  		saltar.setNode(this);
  		saltar.setInterpolator(Interpolator.EASE_OUT);
- 		saltar.setDuration(Duration.seconds(0.30));
+ 		saltar.setDuration(Duration.seconds(0.25));
  		saltar.setCycleCount(1);
         saltar.setByY(-50);
         saltar.setOnFinished((finishedEvent) -> {
@@ -67,7 +67,7 @@ public class Bird extends Sprite {
  		
  		caer = new TranslateTransition();
  		caer.setNode(this);
- 		caer.setCycleCount(TranslateTransition.INDEFINITE);
+ 		caer.setCycleCount(1);
  		caer.setByY(FlappyApp.ALTO);
  		caer.setInterpolator(Interpolator.EASE_IN);
  		caer.setDuration(Duration.seconds(2));

@@ -32,6 +32,7 @@ public class SelectCharacter extends Background {
 	Bird ORANGEBIRD = Birds.ORANGEBIRD;
 	Bird YELLOWBIRD = Birds.YELLOWBIRD;
 	Bird PURPLEBIRD = Birds.PURPLEBIRD;
+	Bird FRANBIRD = Birds.FRANBIRD;
 
 	private List<Bird> pajaritos = new ArrayList<>();
 	public static Bird pajarito;
@@ -61,6 +62,8 @@ public class SelectCharacter extends Background {
 		pajaritos.add(ORANGEBIRD);
 		pajaritos.add(PURPLEBIRD);
 		pajaritos.add(YELLOWBIRD);
+		pajaritos.add(FRANBIRD);
+		
 
 		pajarito = new Bird();
 	}
@@ -90,7 +93,6 @@ public class SelectCharacter extends Background {
 		    	playerText.setText(oldValue);
 		    }
 		});
-		
 		previousButton.setVisible(false);
 	}
 	
@@ -129,13 +131,13 @@ public class SelectCharacter extends Background {
 
 	@FXML
 	void nextButtonAction(ActionEvent event) {
-		if (indice < 5) {
+		if (indice < 6) {
 			previousButton.setVisible(true);
 			stop();
 			indice++;
 			pajarito = pajaritos.get(indice);
 			start();
-			if (indice == 5) {
+			if (indice == 6) {
 				nextButton.setVisible(false);
 			}
 		}

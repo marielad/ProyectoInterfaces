@@ -42,6 +42,7 @@ public class ScoreDB {
 	Statement stmt;
 	
 	JasperPrint jp;
+	InputStream is;
 	Task<Statement> tarea;
 	Task<JasperPrint> tarea2;
 	
@@ -142,6 +143,7 @@ public class ScoreDB {
 	
 	public void cargarJasper(){
 		datosJasper.clear();
+		Map<String, Object> parametros = new HashMap<>();
 		tarea = new Task<Statement>() {
 			protected Statement call() throws Exception {
 				stmt = conn.createStatement();
@@ -156,14 +158,12 @@ public class ScoreDB {
 					LocalDate fecha = LocalDate.now();
 					String nomb = rstSet.getString(1);
 					int puntos = rstSet.getInt(2);
-
 					datosJasper.add(new Partida(nomb, puntos, fecha));
+					is = ScoreDB.class.getResourceAsStream("/flappy/reports/InformePuntuaciones.jasper");
+					parametros.put("TITULO", "Mariela Dorta - Jorge Delgado - Daniel Paredes");
 				}
 				tarea2 = new Task<JasperPrint>() {
 					protected JasperPrint call() throws Exception {
-						InputStream is = ScoreDB.class.getResourceAsStream("/flappy/reports/InformePuntuaciones.jasper");
-						Map<String, Object> parametros = new HashMap<>();
-						parametros.put("TITULO", "Mariela Dorta - Jorge Delgado - Daniel Paredes");
 						jp = JasperFillManager.fillReport(is, parametros, new JRBeanCollectionDataSource(datosJasper));
 						return jp;
 					}

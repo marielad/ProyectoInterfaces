@@ -8,6 +8,7 @@ import flappy.app.FlappyApp;
 import flappy.sound.Sounds;
 import flappy.sprites.Score;
 import flappy.sprites.Bird;
+import flappy.sprites.Birds;
 import flappy.sprites.Explosion;
 import flappy.sprites.Tube;
 import flappy.sprites.Tubes;
@@ -243,7 +244,7 @@ public class Game extends Background {
 	
 	/**
 	 * En esta función se borran y generan tuberías, y se llama
-	 * a checkCollisions() indefinidamente
+	 * a checkCollisions() cada 60fps hasta que se llama a stop();
 	 */
 
 	protected void loop(long now) {
@@ -294,13 +295,14 @@ public class Game extends Background {
 			if (node instanceof Tube) { 
 				Tube tuberia = (Tube) node;
 				Shape intersection = Shape.intersect(tuberia.getShape(), pajarito.getShape());
-				if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
-					if (!pausado) {
-						pause();
-						gameOver();
+				if(pajarito!=Birds.FRANBIRD) {
+					if (pajarito.getTranslateY() >= getHeight() || pajarito.getTranslateY() <= 0 || intersection.getBoundsInLocal().getWidth() != -1) {
+						if (!pausado) {
+							pause();
+							gameOver();
+						}
 					}
 				}
-				
 		        Shape intersectionTwo = Shape.intersect(tuberia.getMiddleShape(), shapeAux);
 		        if (intersectionTwo.getBoundsInLocal().getWidth() != -1) {
 		        	pointSound.stop();
